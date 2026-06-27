@@ -1,0 +1,29 @@
+/* Print / PDF export — relatório PreparaSP
+   Garante que o conteúdo apareça mesmo sem animações e fique legível em papel. */
+@media print {
+  :root { --paper:#fff; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* revela todo conteúdo animado */
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .bar[data-pct] { width: var(--print-w, 100%) !important; }
+
+  /* esconde elementos interativos/flutuantes */
+  .nav, .dock, .progressbar, .hero__scroll, .hero__blob, .hero__grid-overlay,
+  .quotes__bg { display: none !important; }
+
+  body { background: #fff; color: #0a1230; }
+  .hero { min-height: auto; padding: 32px 0 24px; background: #0a1230 !important; }
+  .section { padding-block: 26px; break-inside: avoid; }
+  .section--ink, .quotes, .recs { background: #0a1230 !important; }
+  .cta { background: #2547ff !important; }
+
+  .hero, .quotes, .recs, .cta, .schools-card { color: #fff !important; }
+  .card, .bignum, .mstep, .qcard, .rec, .theme { break-inside: avoid; }
+
+  /* quebras de página em seções-chave */
+  #dores, #oportunidades, #vozes, #recomendacoes { break-before: page; }
+
+  a[href]::after { content: ""; }
+  .cta__btns { display: none; }
+}
