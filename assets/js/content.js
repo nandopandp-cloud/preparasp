@@ -46,9 +46,9 @@
       },
       {
         icon: '🧮', tag: 'Navegação · clareza',
-        title: '“Tudo muito misturado”',
-        text: 'A interface é vista como confusa: “difícil de identificar, deixaria o mais simples possível”. A visão semanal do cronograma concentra informação demais — preferem ver só o dia. O concorrente é lembrado como “mais simples”.',
-        metric: { v: 'simplificar', k: 'pedido espontâneo de UI' },
+        title: '“Tudo muito misturado” — e “muito branco”',
+        text: 'A interface é vista como confusa (“difícil de identificar, deixaria o mais simples possível”) e visualmente apagada: “muito branca”, sem a energia das redes que eles usam. A visão semanal do cronograma concentra informação demais — preferem ver só o dia.',
+        metric: { v: 'simplificar', k: 'clareza + identidade visual' },
       },
       {
         icon: '🐞', tag: 'Confiança · bugs',
@@ -68,8 +68,8 @@
     opps: [
       {
         icon: '💡', tag: 'Redação assistida',
-        title: 'Salvar sozinho e enviar pelo celular',
-        text: 'Salvamento automático elimina a maior dor. Abrir o envio por foto (“escrevo no papel e tiro foto”) e por celular destrava o uso fora do laboratório. Há sinais de que o upload por imagem já começou — vale acelerar e dar sugestões de repertório nos temas difíceis.',
+        title: 'Salvar sozinho, enviar pelo celular',
+        text: 'Salvamento automático elimina a maior dor — incluindo o envio que falha quando cai a conexão. Abrir o envio por foto (“escrevo no papel e tiro foto”) e por celular destrava o uso fora do laboratório. O corretor deve dar repertório nos temas difíceis, não recomeçar do zero.',
         metric: { v: 'autosave', k: 'pedido nº 1 da redação' },
       },
       {
@@ -80,9 +80,15 @@
       },
       {
         icon: '🏆', tag: 'Gamificação',
-        title: 'Da ofensiva à Liga, do avatar ao prêmio',
-        text: 'A ofensiva já cria hábito (alguns passam de 40 dias) e a Liga estadual e os avatares animam a turma. O caminho é amarrar tudo: pontos que viram itens, coleções e recompensas — “preciso ser compensado pra querer estudar”.',
+        title: 'Da ofensiva à Liga — com progresso à vista',
+        text: 'A ofensiva já cria hábito (alguns passam de 40 dias) e a Liga e os avatares animam a turma. Falta tornar o progresso visível (“só faço e não vejo o resultado”) e amarrar pontos, coleções, recompensas e até disputas entre amigos — “preciso ser compensado pra querer estudar”.',
         metric: { v: '47 dias', k: 'maior ofensiva relatada em campo' },
+      },
+      {
+        icon: '🤖', tag: 'IA · assistente',
+        title: 'Potencializar o assistente de IA',
+        text: 'A turma toda já usa ChatGPT. A plataforma tem uma IA — o caminho é torná-la contextual e visível: tirar dúvidas dentro do conteúdo e levar o estudante direto à unidade certa (“vá ao curso de Português, oração subordinada”).',
+        metric: { v: 'IA nativa', k: 'tutor dentro da jornada' },
       },
       {
         icon: '🧩', tag: 'Personalização',
@@ -91,16 +97,22 @@
         metric: { v: 'editar', k: 'controle sobre o próprio plano' },
       },
       {
-        icon: '🧭', tag: 'Futuro · carreira',
+        icon: '🎓', tag: 'Futuro · carreira',
         title: 'Um teste vocacional de verdade',
         text: 'Estudantes do 2º e 3º ano estão decidindo o vestibular e pedem orientação: “se tivesse um teste vocacional na plataforma...”. Uma trilha de descoberta de carreira conecta o estudo a um propósito concreto.',
         metric: { v: 'vocação', k: 'ajudar a escolher o caminho' },
       },
       {
         icon: '⚡', tag: 'Biblioteca · formatos',
-        title: 'Biblioteca viva: resumos, flashcards e vídeos que prendem',
-        text: 'O consumo de vídeo é baixo. Pedem resumos rápidos, flashcards para memorizar e vídeos mais ilustrados (“com desenhos, stickers”). Dar visibilidade à biblioteca e variar formatos atende diferentes formas de estudar.',
+        title: 'Biblioteca viva: resumos, flashcards e mapas mentais',
+        text: 'Hoje a biblioteca é só vídeo — e quase ninguém entra. Pedem resumos rápidos, flashcards, mapas mentais editáveis e vídeos mais ilustrados (“com desenhos, stickers”). Dar visibilidade e variar formatos atende diferentes formas de estudar.',
         metric: { v: '+formatos', k: 'além do vídeo padrão' },
+      },
+      {
+        icon: '🌎', tag: 'Inclusão · equidade',
+        title: 'Acolher estudantes imigrantes',
+        text: 'Em campo, educadores apontaram turmas com muitos imigrantes (Venezuela, Haiti, países de língua francesa) diante de uma plataforma só em português. Suporte a múltiplos idiomas é uma oportunidade real de equidade na rede estadual.',
+        metric: { v: 'multi-idioma', k: 'ninguém fica para trás' },
       },
     ],
 
@@ -109,23 +121,26 @@
       { text: 'Quando a gente sai sem querer do computador, não salva — você perde tudo da redação. Se salvasse sozinho, ajudaria muito.', who: 'Estudante · 3º ano', meta: 'Sobre a Redação Paulista', hl: true },
       { text: 'Eu me sinto confuso porque tem muita coisa. Eu tenho TDAH, eu não sei onde vou estudar.', who: 'Estudante · 3º ano', meta: 'Sobre o cronograma', hl: false },
       { text: 'Achei tudo muito misturado, difícil de identificar. Eu deixaria o mais simples possível.', who: 'Estudante · 3º ano', meta: 'Sobre a interface', hl: false },
-      { text: 'Eu queria poder editar o cronograma — colocar o que é meu e jogar pra frente o que eu não vou fazer agora.', who: 'Estudante · 2º ano', meta: 'Sobre autonomia no estudo', hl: false },
+      { text: 'A plataforma é muito branca. As redes que a gente usa são muito mais coloridas, mais alegres.', who: 'Estudante · 3º ano', meta: 'Sobre identidade visual', hl: false },
       { text: 'Quando clica em “ver histórico”, não aparece nada. Nem abre.', who: 'Estudante · 2º ano', meta: 'Sobre confiabilidade', hl: false },
       { text: 'O computador não dá pra baixar, e não tem como usar no sábado.', who: 'Estudante · 2º ano', meta: 'Sobre acesso e dispositivos', hl: false },
-      { text: 'Eu preciso ser compensado pra querer estudar — estudar, pra mim, não é algo interessante por si só.', who: 'Estudante · 3º ano', meta: 'Sobre motivação', hl: false },
+      { text: 'Eu preciso ser compensado pra querer estudar — estudar, pra mim, não é algo interessante por si só.', who: 'Estudante · 3º ano', meta: 'Sobre motivação', hl: true },
+      { text: 'A gente tem muito aluno imigrante — Venezuela, países de língua francesa — e a plataforma só tem português.', who: 'Educador(a) · em campo', meta: 'Sobre inclusão e equidade', hl: false },
       { text: 'A galera já tem 47 dias de ofensiva.', who: 'Roda de conversa', meta: 'Sobre engajamento e hábito', hl: true },
     ],
 
     /* ---- recomendações ---- */
     recs: [
-      { pr: '01', prio: 'high', title: 'Redação à prova de falhas', text: 'Salvamento automático contínuo, recuperação de rascunho e envio por foto/celular. Maior ganho de confiança com o menor esforço.' },
+      { pr: '01', prio: 'high', title: 'Redação à prova de falhas', text: 'Salvamento automático contínuo, recuperação de rascunho, resiliência à queda de conexão e envio por foto/celular. Maior ganho de confiança com o menor esforço.' },
       { pr: '02', prio: 'high', title: 'Levar o PreparaSP para o celular e para casa', text: 'Experiência mobile fluida para estudar em casa e no fim de semana — onde os estudantes dizem que o uso “seria bem maior”.' },
       { pr: '03', prio: 'high', title: '“Comece por aqui”: onboarding guiado', text: 'Um primeiro passo claro e trilhas por objetivo, com suporte a necessidades específicas (acessibilidade, TDAH), para vencer a paralisia do excesso.' },
-      { pr: '04', prio: 'high', title: 'Simplificar a navegação e o cronograma', text: 'Reduzir densidade, priorizar a visão do dia e separar com clareza tarefa do professor × recomendação do algoritmo. Menos é mais.' },
+      { pr: '04', prio: 'high', title: 'Interface mais simples e mais viva', text: 'Reduzir densidade, priorizar a visão do dia, separar tarefa do professor × algoritmo — e dar mais cor e energia à identidade visual.' },
       { pr: '05', prio: 'mid', title: 'Reconquistar a confiança', text: 'Corrigir bugs visíveis (ver histórico, botão coberto no tablet, matemática ilegível) e a lentidão em uso simultâneo.' },
-      { pr: '06', prio: 'mid', title: 'Gamificação de ponta a ponta', text: 'Conectar ofensiva, Liga, avatares, pontos e recompensas ativadas pela escola — transformando hábito em pertencimento.' },
+      { pr: '06', prio: 'mid', title: 'Gamificação de ponta a ponta', text: 'Conectar ofensiva, Liga, avatares, pontos e recompensas da escola — com o progresso sempre visível e disputas entre amigos.' },
       { pr: '07', prio: 'mid', title: 'Cronograma editável, com lembretes', text: 'Permitir reordenar, marcar concluído e receber lembrete no celular — devolvendo autonomia ao estudante.' },
-      { pr: '08', prio: 'mid', title: 'Dar vida à biblioteca e à acessibilidade', text: 'Tornar visíveis recursos que já existem e ampliar formatos (resumos, flashcards, vídeos ilustrados). Além de um teste vocacional para conectar estudo e futuro.' },
+      { pr: '08', prio: 'mid', title: 'Assistente de estudos com IA', text: 'Tornar a IA da plataforma contextual e visível, tirando dúvidas e levando o estudante direto ao conteúdo certo. Eles já usam ChatGPT — traga isso para dentro.' },
+      { pr: '09', prio: 'mid', title: 'Biblioteca viva + acessibilidade visível', text: 'Dar destaque a recursos que já existem e ampliar formatos: resumos, flashcards, mapas mentais e vídeos ilustrados.' },
+      { pr: '10', prio: 'mid', title: 'Inclusão, equidade e futuro', text: 'Suporte a múltiplos idiomas para estudantes imigrantes e um teste vocacional que conecte o estudo a um propósito.' },
     ],
   };
 
