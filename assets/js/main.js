@@ -1,4 +1,4 @@
-/* PreparaSP · Relatório — interações e animações */
+/* PreparaSP · Relatório · interações e animações */
 (function () {
   'use strict';
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -10,8 +10,8 @@
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232547ff'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='28' font-weight='bold' fill='white' text-anchor='middle'%3ESP%3C/text%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/img/logo-prepara.png" />
 <link rel="stylesheet" href="assets/css/style.css" />
 <link rel="stylesheet" href="assets/css/print.css" media="print" />
 </head>
@@ -21,8 +21,8 @@
 <!-- ===================== NAV ===================== -->
 <nav class="nav">
   <a class="nav__brand" href="#top">
-    <span class="nav__logo">SP</span>
-    <span>PreparaSP<small>Relatório de pesquisa</small></span>
+    <img class="nav__logo-img" src="assets/img/logo-prepara.png" alt="PreparaSP" />
+    <span class="nav__brand-text">Relatório de pesquisa de campo</span>
   </a>
   <div class="nav__links">
     <a href="#metodologia">Metodologia</a>
@@ -51,32 +51,65 @@
 <!-- ===================== HERO ===================== -->
 <header class="hero" id="top">
   <div class="hero__bg" aria-hidden="true">
+    <div class="hero__grid"></div>
     <span class="hero__blob b1"></span>
     <span class="hero__blob b2"></span>
     <span class="hero__blob b3"></span>
-    <div class="hero__grid-overlay"></div>
   </div>
-  <div class="wrap">
-    <span class="eyebrow eyebrow--light hero__tag" data-reveal><span class="dot"></span> Pesquisa de campo · Ensino Médio · Rede Estadual de São Paulo</span>
-    <h1 data-reveal data-reveal-delay="1">A voz de quem<br/>usa o <span class="grad">PreparaSP</span> todos os dias.</h1>
-    <p class="hero__sub" data-reveal data-reveal-delay="2">
-      Uma imersão presencial com estudantes do 2º e 3º ano do Ensino Médio para entender,
-      na prática, o que funciona, o que trava e onde estão as maiores oportunidades da plataforma.
-    </p>
-    <div class="hero__meta" data-reveal data-reveal-delay="3">
-      <span class="pill">🏫 <b>5 escolas</b> visitadas</span>
-      <span class="pill">🎓 <b>~480 estudantes</b> ouvidos</span>
-      <span class="pill">🗣️ <b>4 rodas</b> de conversa em grupo</span>
-      <span class="pill">📍 2º e 3º ano do Ensino Médio</span>
+
+  <div class="wrap hero__layout">
+    <div class="hero__col">
+      <span class="status-badge hero__tag" data-reveal>
+        <span class="dot"></span>
+        <span>Pesquisa de campo · Rede Estadual de São Paulo</span>
+      </span>
+      <h1 data-reveal data-reveal-delay="1">A voz de quem usa o <span class="grad">PreparaSP</span> todos os dias.</h1>
+      <p class="hero__sub" data-reveal data-reveal-delay="2">
+        Uma imersão presencial com estudantes do 2º e 3º ano do Ensino Médio para entender,
+        na prática, o que funciona, o que trava e onde estão as maiores oportunidades da plataforma.
+      </p>
+      <div class="hero__cta" data-reveal data-reveal-delay="3">
+        <a class="btn-beam" href="#dores">
+          <span class="beam-ring" aria-hidden="true"></span>
+          <span class="beam-surface">Explorar os achados<span class="shimmer" aria-hidden="true"></span></span>
+        </a>
+        <a class="btn-ghost" href="#metodologia">Como ouvimos</a>
+      </div>
+      <div class="hero__meta" data-reveal data-reveal-delay="4">
+        <span class="pill">🏫 <b>5 escolas</b> visitadas</span>
+        <span class="pill">🎓 <b>~480 estudantes</b> ouvidos</span>
+        <span class="pill">🗣️ <b>4 rodas</b> de conversa</span>
+      </div>
     </div>
 
-    <div class="hero__stats" data-reveal data-reveal-delay="4">
-      <div class="stat"><div class="n"><span data-count="5">0</span></div><div class="l">Escolas em imersão presencial</div></div>
-      <div class="stat"><div class="n"><span data-count="480" data-suffix="">0</span></div><div class="l">Estudantes na amostra</div></div>
-      <div class="stat"><div class="n"><span data-count="2">0</span> séries</div><div class="l">Foco no 2º e 3º ano</div></div>
-      <div class="stat"><div class="n"><span data-count="100" data-suffix="%">0</span></div><div class="l">Escuta qualitativa, em campo</div></div>
+    <div class="hero__col hero__media" data-reveal data-reveal-delay="3">
+      <figure class="hero__shot">
+        <img src="assets/img/hero-estudantes.png" alt="Estudantes da rede estadual de São Paulo conversando em frente à escola" loading="eager" />
+        <figcaption class="hero__shot-cap">
+          <span class="hero__shot-dot"></span>
+          Estudantes do Ensino Médio · rede estadual de SP
+        </figcaption>
+      </figure>
+      <div class="hero__float hero__float--a">
+        <span class="hf-k">Escuta</span>
+        <span class="hf-v">Em campo, presencial</span>
+      </div>
+      <div class="hero__float hero__float--b">
+        <span class="hf-k">Foco</span>
+        <span class="hf-v">2º e 3º ano</span>
+      </div>
     </div>
   </div>
+
+  <div class="wrap">
+    <div class="hero__strip" data-reveal data-reveal-delay="4">
+      <div class="hstat"><div class="num"><span data-count="5">0</span></div><div class="lbl">Escolas em imersão presencial</div></div>
+      <div class="hstat"><div class="num"><span data-count="480">0</span></div><div class="lbl">Estudantes na amostra</div></div>
+      <div class="hstat"><div class="num"><span data-count="4">0</span></div><div class="lbl">Rodas de conversa em grupo</div></div>
+      <div class="hstat"><div class="num"><span data-count="100" data-suffix="%">0</span></div><div class="lbl">Escuta qualitativa, em campo</div></div>
+    </div>
+  </div>
+
   <div class="hero__scroll" aria-hidden="true">
     <span>Role para explorar</span>
     <span class="mouse"></span>
@@ -89,7 +122,7 @@
     <div class="section__head" data-reveal>
       <span class="eyebrow"><span class="dot"></span> Panorama da pesquisa</span>
       <h2>O que aprendemos ouvindo a sala de aula.</h2>
-      <p>Em vez de relatórios à distância, fomos às escolas. Sentamos com os estudantes, ouvimos as rodas de conversa e registramos — sem filtro — como o PreparaSP aparece na rotina de quem está se preparando para o vestibular, o ENEM e a vida depois da escola.</p>
+      <p>Em vez de relatórios à distância, fomos às escolas. Sentamos com os estudantes, ouvimos as rodas de conversa e registramos, sem filtro, como o PreparaSP aparece na rotina de quem está se preparando para o vestibular, o ENEM e a vida depois da escola.</p>
     </div>
     <div class="bignum-grid">
       <article class="bignum" data-reveal data-reveal-delay="1">
@@ -108,7 +141,7 @@
         <div class="ic">🗣️</div>
         <div class="n"><span data-count="4">0</span></div>
         <div class="label">Rodas de conversa</div>
-        <div class="desc">Entrevistas em grupo gravadas e analisadas trecho a trecho.</div>
+        <div class="desc">Entrevistas em grupo documentadas e analisadas trecho a trecho.</div>
       </article>
     </div>
   </div>
@@ -120,14 +153,14 @@
     <div class="section__head" data-reveal>
       <span class="eyebrow"><span class="dot"></span> Como ouvimos</span>
       <h2>Metodologia: imersão presencial, na linguagem da escola.</h2>
-      <p>Uma pesquisa qualitativa de campo, conduzida com estudantes reais, em ambiente real — para capturar percepções espontâneas sobre o uso do PreparaSP.</p>
+      <p>Uma pesquisa qualitativa de campo, conduzida com estudantes reais, em ambiente real, para capturar percepções espontâneas sobre o uso do PreparaSP.</p>
     </div>
     <div class="method-grid">
       <div class="method-steps">
         <div class="mstep" data-reveal data-reveal-delay="1"><div class="num">01</div><div><h4>Visita às escolas</h4><p>Cinco unidades da rede estadual, com turmas de 2º e 3º ano do Ensino Médio.</p></div></div>
         <div class="mstep" data-reveal data-reveal-delay="2"><div class="num">02</div><div><h4>Rodas de conversa em grupo</h4><p>Conversas abertas, em formato de grupo, sobre rotina de estudo e uso da plataforma.</p></div></div>
-        <div class="mstep" data-reveal data-reveal-delay="3"><div class="num">03</div><div><h4>Registro em áudio</h4><p>Cada roda foi gravada integralmente para análise posterior, preservando a fala dos estudantes.</p></div></div>
-        <div class="mstep" data-reveal data-reveal-delay="4"><div class="num">04</div><div><h4>Análise temática</h4><p>Transcrição e codificação dos trechos em insights, dores e oportunidades acionáveis.</p></div></div>
+        <div class="mstep" data-reveal data-reveal-delay="3"><div class="num">03</div><div><h4>Documentação das conversas</h4><p>Cada roda foi documentada integralmente para análise posterior, preservando a fala dos estudantes.</p></div></div>
+        <div class="mstep" data-reveal data-reveal-delay="4"><div class="num">04</div><div><h4>Análise temática</h4><p>Organização e codificação dos trechos em insights, dores e oportunidades acionáveis.</p></div></div>
       </div>
       <aside class="schools-card" data-reveal data-reveal-delay="2">
         <h3>Onde estivemos</h3>
@@ -150,7 +183,7 @@
     <div class="section__head" data-reveal>
       <span class="eyebrow"><span class="dot"></span> Os grandes temas</span>
       <h2>O que mais apareceu nas conversas.</h2>
-      <p>As barras indicam <b>em quantas das 4 rodas</b> de conversa cada tema apareceu de forma relevante — uma leitura qualitativa de recorrência, não uma medição estatística.</p>
+      <p>As barras indicam <b>em quantas das 4 rodas</b> de conversa cada tema apareceu de forma relevante. É uma leitura qualitativa de recorrência, não uma medição estatística.</p>
     </div>
     <div class="theme-row" id="themesRows">
       <!-- preenchido a partir das transcrições -->
@@ -164,7 +197,7 @@
     <div class="section__head" data-reveal>
       <span class="eyebrow eyebrow--warm"><span class="dot"></span> Dores e fricções</span>
       <h2>Onde a experiência ainda trava.</h2>
-      <p>Os obstáculos que mais apareceram quando os estudantes falaram sobre usar — ou desistir de usar — o PreparaSP.</p>
+      <p>Os obstáculos que mais apareceram quando os estudantes falaram sobre usar, ou desistir de usar, o PreparaSP.</p>
     </div>
     <div class="cards-grid" id="painsGrid">
       <!-- preenchido a partir das transcrições -->
@@ -207,7 +240,7 @@
     <div class="section__head" data-reveal>
       <span class="eyebrow"><span class="dot"></span> A imersão em campo</span>
       <h2>Registros da pesquisa.</h2>
-      <p>Fotografias das visitas às escolas e das rodas de conversa. As imagens serão adicionadas em seguida — os espaços abaixo já estão preparados para recebê-las.</p>
+      <p>Fotografias das visitas às escolas e das rodas de conversa. As imagens serão adicionadas em seguida, e os espaços abaixo já estão preparados para recebê-las.</p>
     </div>
     <div class="gal-grid">
       <figure class="gal-item span-8 tall" data-reveal>
@@ -267,9 +300,8 @@
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap frow">
-    <a class="nav__brand" href="#top">
-      <span class="nav__logo">SP</span>
-      <span>PreparaSP<small style="color:#7e88b8">Relatório de pesquisa de campo</small></span>
+    <a class="nav__brand footer__brand" href="#top">
+      <img class="footer__logo-img" src="assets/img/logo-prepara.png" alt="PreparaSP" />
     </a>
     <small>Pesquisa qualitativa · 5 escolas · ~480 estudantes · 2º e 3º ano do Ensino Médio<br/>Material preparado para apresentação à Secretaria da Educação do Estado de São Paulo · <span data-year>2026</span></small>
   </div>
