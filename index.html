@@ -256,34 +256,62 @@
     <div class="section__head" data-reveal>
       <span class="eyebrow"><span class="dot"></span> A imersão em campo</span>
       <h2>Registros da pesquisa.</h2>
-      <p>Fotografias das visitas às escolas e das conversas com os estudantes. As imagens serão adicionadas em seguida, e os espaços abaixo já estão preparados para recebê-las.</p>
+      <p>Fotografias das visitas às escolas e das conversas com os estudantes durante a imersão presencial em campo.</p>
     </div>
     <div class="gal-grid">
-      <figure class="gal-item span-8 tall" data-reveal>
-        <div class="ph"><span class="ic">📷</span><b>Conversa com estudantes</b><small>Adicione aqui a foto principal da imersão (assets/img/)</small></div>
-        <figcaption class="cap">Conversa com estudantes do 3º ano</figcaption>
+      <figure class="gal-item" data-reveal>
+        <img src="assets/GenieX/estudantes/conversa-04.jpeg" alt="Estudantes reunidos junto à tenda do PreparaSP" loading="lazy" />
+        <figcaption class="cap">Estudantes reunidos na imersão</figcaption>
       </figure>
-      <figure class="gal-item span-4" data-reveal data-reveal-delay="1">
-        <div class="ph"><span class="ic">📷</span><small>Foto vertical</small></div>
-        <figcaption class="cap">Estudante durante a dinâmica</figcaption>
-      </figure>
-      <figure class="gal-item span-4" data-reveal data-reveal-delay="2">
-        <div class="ph"><span class="ic">📷</span><small>Foto da escola</small></div>
-        <figcaption class="cap">Fachada da unidade visitada</figcaption>
-      </figure>
-      <figure class="gal-item span-4" data-reveal data-reveal-delay="1">
-        <div class="ph"><span class="ic">📷</span><small>Detalhe da atividade</small></div>
-        <figcaption class="cap">Material da pesquisa</figcaption>
-      </figure>
-      <figure class="gal-item span-4" data-reveal data-reveal-delay="2">
-        <div class="ph"><span class="ic">📷</span><small>Estudantes em grupo</small></div>
+      <figure class="gal-item" data-reveal data-reveal-delay="1">
+        <img src="assets/GenieX/estudantes/conversa-08.jpeg" alt="Estudantes em conversa em grupo" loading="lazy" />
         <figcaption class="cap">Conversa em grupo</figcaption>
       </figure>
-      <figure class="gal-item span-12" data-reveal>
-        <div class="ph"><span class="ic">📷</span><b>Foto panorâmica</b><small>Imagem horizontal da turma / sala</small></div>
+      <figure class="gal-item" data-reveal data-reveal-delay="1">
+        <img src="assets/GenieX/estudantes/conversa-05.jpeg" alt="Estudantes na tenda do PreparaSP" loading="lazy" />
+        <figcaption class="cap">Estudantes na tenda do PreparaSP</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="2">
+        <img src="assets/GenieX/estudantes/conversa-06.jpeg" alt="Estudantes interagindo durante a atividade" loading="lazy" />
+        <figcaption class="cap">Interação durante a atividade</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="3">
+        <img src="assets/GenieX/estudantes/conversa-01.jpeg" alt="Apresentação do PreparaSP para a turma" loading="lazy" />
+        <figcaption class="cap">Apresentação para a turma</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="1">
+        <img src="assets/GenieX/estudantes/conversa-03.jpeg" alt="Conversa com estudantes durante a imersão em quadra" loading="lazy" />
+        <figcaption class="cap">Conversa com estudantes em campo</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="2">
+        <img src="assets/GenieX/estudantes/conversa-09.jpeg" alt="Estudantes conversando na quadra" loading="lazy" />
+        <figcaption class="cap">Conversa na quadra</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="3">
+        <img src="assets/GenieX/estudantes/conversa-10.jpeg" alt="Apresentação do PreparaSP para os estudantes" loading="lazy" />
         <figcaption class="cap">Turma participante da pesquisa</figcaption>
       </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="1">
+        <img src="assets/GenieX/estudantes/conversa-02.jpeg" alt="Conversa com estudantes em sala de aula" loading="lazy" />
+        <figcaption class="cap">Conversa com a turma em sala</figcaption>
+      </figure>
     </div>
+  </div>
+
+  <!-- Lightbox / visualização em tela cheia -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualização da foto">
+    <div class="lightbox__stage" id="lbStage">
+      <img class="lightbox__img" id="lbImg" src="" alt="" />
+    </div>
+    <p class="lightbox__cap" id="lbCap"></p>
+    <div class="lightbox__bar">
+      <button type="button" class="lb-btn" data-lb="zoom-out" aria-label="Diminuir zoom">&minus;</button>
+      <button type="button" class="lb-btn" data-lb="reset" aria-label="Restaurar zoom">100%</button>
+      <button type="button" class="lb-btn" data-lb="zoom-in" aria-label="Aumentar zoom">+</button>
+    </div>
+    <button type="button" class="lightbox__nav lightbox__prev" data-lb="prev" aria-label="Foto anterior">&#8249;</button>
+    <button type="button" class="lightbox__nav lightbox__next" data-lb="next" aria-label="Próxima foto">&#8250;</button>
+    <button type="button" class="lightbox__close" data-lb="close" aria-label="Fechar">&times;</button>
   </div>
 </section>
 

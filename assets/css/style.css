@@ -386,19 +386,98 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
    GALLERY (photos placeholders)
    ========================================================================= */
 .gallery { background: var(--paper); }
-.gal-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(12px, 1.6vw, 18px); grid-auto-rows: 1fr; }
-.gal-item { position: relative; border-radius: var(--radius); overflow: hidden; background: linear-gradient(135deg, var(--paper-2), #e2e7f3); min-height: 200px; border:1px solid var(--line-soft); }
-.gal-item img { width:100%; height:100%; object-fit: cover; transition: transform .6s cubic-bezier(.16,1,.3,1); }
-.gal-item:hover img { transform: scale(1.06); }
-.gal-item .ph { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color: var(--muted-2); text-align:center; padding:18px; }
-.gal-item .ph .ic { font-size: 1.8rem; opacity:.6; }
-.gal-item .ph small { font-size:.78rem; max-width: 22ch; }
-.gal-item .cap { position:absolute; left:0; right:0; bottom:0; padding: 28px 18px 14px; background: linear-gradient(transparent, rgba(10,18,48,.78)); color:#fff; font-size:.86rem; font-weight:500; opacity:0; transform: translateY(8px); transition: .35s; }
+/* mosaico encaixado: grid com row-span calculado em JS (.is-packed) — sem espaço em branco.
+   fallback (sem JS / antes do cálculo): masonry por colunas. */
+.gal-grid {
+  --gal-gap: clamp(12px, 1.6vw, 18px);
+  column-count: 3;
+  column-gap: var(--gal-gap);
+}
+.gal-grid.is-packed {
+  display: grid;
+  grid-template-columns: repeat(var(--gal-cols, 3), 1fr);
+  grid-auto-rows: var(--gal-row, 8px);
+  gap: var(--gal-gap);
+  column-gap: var(--gal-gap);
+}
+.gal-item {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: var(--gal-gap);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--paper-2), #e2e7f3);
+  border: 1px solid var(--line-soft);
+  display: block;
+  cursor: zoom-in;
+}
+.gal-grid.is-packed .gal-item { margin-bottom: 0; align-self: start; }
+.gal-item img { width:100%; height:auto; display:block; transition: transform .6s cubic-bezier(.16,1,.3,1); }
+.gal-item:hover img { transform: scale(1.04); }
+.gal-item .cap { position:absolute; left:0; right:0; bottom:0; padding: 32px 18px 14px; background: linear-gradient(transparent, rgba(10,18,48,.82)); color:#fff; font-size:.86rem; font-weight:500; opacity:0; transform: translateY(8px); transition: .35s; }
 .gal-item:hover .cap { opacity:1; transform:none; }
-.gal-item.span-6 { grid-column: span 6; } .gal-item.span-4 { grid-column: span 4; }
-.gal-item.span-8 { grid-column: span 8; } .gal-item.span-12 { grid-column: span 12; }
-.gal-item.tall { grid-row: span 2; }
-@media (max-width: 760px){ .gal-item { grid-column: span 6 !important; grid-row: auto !important; min-height: 160px; } }
+@media (max-width: 900px){ .gal-grid { column-count: 2; } }
+@media (max-width: 520px){ .gal-grid { column-count: 1; } }
+
+/* ---------- Lightbox / tela cheia ---------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(6, 11, 30, .94);
+  backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease;
+  padding: clamp(16px, 4vw, 40px);
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox__stage {
+  flex: 1 1 auto; width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; touch-action: none;
+}
+.lightbox__img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain; border-radius: 8px;
+  transform: scale(var(--lb-scale, 1)) translate(var(--lb-x, 0px), var(--lb-y, 0px));
+  transition: transform .18s ease;
+  cursor: grab; user-select: none; -webkit-user-drag: none;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+.lightbox__img.is-grabbing { cursor: grabbing; transition: none; }
+.lightbox__cap { color: rgba(255,255,255,.82); font-size: .92rem; margin: 14px 0 0; text-align: center; min-height: 1.2em; }
+.lightbox__bar {
+  display: flex; gap: 8px; align-items: center; margin-top: 16px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px; padding: 6px;
+}
+.lb-btn {
+  appearance: none; border: 0; cursor: pointer;
+  min-width: 44px; height: 40px; padding: 0 12px;
+  border-radius: 999px; background: transparent; color: #fff;
+  font-size: 1.1rem; font-weight: 600; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .2s ease;
+}
+.lb-btn:hover { background: rgba(255,255,255,.16); }
+.lightbox__close, .lightbox__nav {
+  position: absolute; z-index: 2;
+  appearance: none; border: 0; cursor: pointer;
+  background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.18);
+  color: #fff; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .2s ease, transform .2s ease;
+}
+.lightbox__close:hover, .lightbox__nav:hover { background: rgba(255,255,255,.22); }
+.lightbox__close { top: clamp(12px, 2.4vw, 24px); right: clamp(12px, 2.4vw, 24px); width: 46px; height: 46px; font-size: 1.6rem; }
+.lightbox__nav { top: 50%; transform: translateY(-50%); width: 52px; height: 52px; font-size: 1.8rem; }
+.lightbox__nav:hover { transform: translateY(-50%) scale(1.06); }
+.lightbox__prev { left: clamp(8px, 2vw, 28px); }
+.lightbox__next { right: clamp(8px, 2vw, 28px); }
+@media (max-width: 640px){
+  .lightbox__nav { width: 44px; height: 44px; font-size: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce){
+  .lightbox, .lightbox__img { transition: none; }
+}
 
 /* =========================================================================
    RECOMMENDATIONS / ROADMAP
