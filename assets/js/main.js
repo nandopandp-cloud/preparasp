@@ -103,18 +103,42 @@
   }
 
   /* ---------- section dock active state ---------- */
-  const dockLinks = document.querySelectorAll('.dock a');
-  const sections = [...dockLinks].map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  if ('IntersectionObserver' in window && sections.length) {
-    const sio = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const id = '#' + e.target.id;
-          dockLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === id));
+  const dockLinks = [...document.querySelectorAll('.dock a')];
+  const dockTargets = dockLinks
+    .map((a) => {
+      const el = document.querySelector(a.getAttribute('href'));
+      return el ? { link: a, el } : null;
+    })
+    .filter(Boolean);
+
+  if (dockTargets.length) {
+    let activeLink = null;
+    function setActive(link) {
+      if (link === activeLink) return;
+      activeLink = link;
+      dockLinks.forEach((a) => a.classList.toggle('is-active', a === link));
+    }
+    function updateDock() {
+      // linha de leitura a ~34% da altura da viewport
+      const line = window.scrollY + window.innerHeight * 0.34;
+      const docH = document.documentElement.scrollHeight;
+      const atBottom = window.scrollY + window.innerHeight >= docH - 2;
+
+      let current = dockTargets[0];
+      if (atBottom) {
+        // garante que a última seção fique ativa ao chegar no rodapé
+        current = dockTargets[dockTargets.length - 1];
+      } else {
+        for (const t of dockTargets) {
+          if (t.el.getBoundingClientRect().top + window.scrollY <= line) current = t;
+          else break;
         }
-      });
-    }, { threshold: 0.5 });
-    sections.forEach((s) => sio.observe(s));
+      }
+      setActive(current.link);
+    }
+    window.addEventListener('scroll', updateDock, { passive: true });
+    window.addEventListener('resize', updateDock, { passive: true });
+    updateDock();
   }
 
   /* ---------- current year ---------- */
