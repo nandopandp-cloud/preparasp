@@ -1,41 +1,72 @@
 /* Print / PDF export — relatório PreparaSP
-   Garante que o conteúdo apareça mesmo sem animações e fique legível em papel. */
+   Versão adaptada para PDF: mantém a identidade visual (cores, tipografia,
+   fotos), mas remove efeitos pesados (blur, backdrop-filter, sombras grandes,
+   gradientes decorativos) que fazem o navegador rasterizar páginas inteiras
+   em bitmap e inflam o arquivo. Resultado: PDF muito mais leve e rápido. */
 @media print {
   :root { --paper:#fff; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
+  /* ---------- 1. neutraliza tudo que vira bitmap pesado ---------- */
+  *, *::before, *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
   /* revela todo conteúdo animado */
-  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  [data-reveal] { opacity: 1 !important; }
   .bar[data-pct] { width: var(--print-w, 100%) !important; }
+
+  /* remove blobs/scrims/gradientes decorativos (pseudo-elementos pesados) */
+  .hero__scrim,
+  .schools-card::after,
+  .bignum::before,
+  .card::after,
+  .quotes__bg,
+  .hero__blob { display: none !important; background: none !important; }
 
   /* esconde elementos interativos/flutuantes */
   .nav, .dock, .progressbar, .hero__scroll,
-  .hero__floats, .hero__float, .quotes__bg { display: none !important; }
+  .hero__floats, .hero__float { display: none !important; }
 
+  /* ---------- 2. layout base ---------- */
   body { background: #fff; color: #0a1230; }
-  .hero, .hero--bleed { min-height: auto; padding: 28px 0 24px; background: #0a1230 !important; display: block; }
-  .hero__photo { position: relative !important; height: 280px; }
-  .hero__photo img { height: 280px; }
-  .hero__overlay { padding-top: 20px; }
-  .section { padding-block: 26px; break-inside: avoid; }
+  .wrap { max-width: 100% !important; }
+  .section { padding-block: 22px; break-inside: avoid; }
   .section--ink, .quotes, .recs { background: #0a1230 !important; }
   .cta { background: #2547ff !important; }
-
   .hero, .quotes, .recs, .cta, .schools-card { color: #fff !important; }
-  /* sobre o navy do hero no papel, o texto auxiliar precisa de bom contraste */
+  .card, .bignum, .mstep, .qcard, .rec, .theme, .edu-card { break-inside: avoid; }
+
+  /* ---------- 3. hero compacto e leve ---------- */
+  .hero, .hero--bleed { min-height: auto !important; padding: 24px 0 22px; background: #0a1230 !important; display: block; }
+  .hero__photo { position: relative !important; height: 240px !important; overflow: hidden; }
+  /* usa a foto leve (JPEG) no PDF e esconde o PNG pesado */
+  .hero__photo-screen { display: none !important; }
+  .hero__photo-print { display: block !important; }
+  .hero__photo img { width: 100% !important; height: 240px !important; object-fit: cover !important; object-position: center 30%; }
+  .hero__overlay { padding-top: 18px; }
   .hero__sub { color: rgba(255,255,255,.94) !important; }
-  .hero__strip, .hstat, .hstat .num, .hstat .lbl { color: #fff !important; opacity: 1 !important; }
+  /* texto com gradiente recortado falha na impressão: usa cor sólida da marca */
+  .grad { -webkit-text-fill-color: #ff9100 !important; background: none !important; color: #ff9100 !important; }
+  /* faixa de stats: cor sólida no lugar do vidro translúcido */
+  .hero__strip { background: rgba(255,255,255,.06) !important; border: 1px solid rgba(255,255,255,.18) !important; }
+  .hero__strip, .hstat, .hstat .num { color: #fff !important; opacity: 1 !important; }
   .hstat .lbl { color: rgba(255,255,255,.82) !important; }
-  .card, .bignum, .mstep, .qcard, .rec, .theme { break-inside: avoid; }
 
-  /* quebras de página em seções-chave */
+  /* ---------- 4. quebras de página em seções-chave ---------- */
   #dores, #oportunidades, #vozes, #recomendacoes { break-before: page; }
-
   a[href]::after { content: ""; }
   .cta__btns { display: none; }
 
-  /* galeria: layout estável no PDF (ignora o row-span calculado em JS),
-     mantém as fotos inteiras sem cortar entre páginas */
+  /* ---------- 5. galeria: grade estável, fotos inteiras ---------- */
   .gal-grid, .gal-grid.is-packed {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -47,14 +78,15 @@
     grid-row: auto !important;
     margin-bottom: 0 !important;
     border: 1px solid #d6dcea;
+    background: none !important;
   }
   .gal-item img { height: auto !important; object-fit: contain !important; }
-  /* legendas das fotos sempre visíveis no papel */
-  .gal-item .cap { position: static !important; opacity: 1 !important; transform: none !important; color: #0a1230 !important; background: none !important; padding: 6px 4px 0 !important; }
+  /* legendas sempre visíveis no papel */
+  .gal-item .cap { position: static !important; opacity: 1 !important; color: #0a1230 !important; background: none !important; padding: 6px 4px 0 !important; }
 
-  /* cards de educadores: foto + texto inteiros na página */
-  .edu-card { break-inside: avoid; }
-  .edu-card .edu-photo img { object-fit: cover; }
+  /* ---------- 6. cards de educadores ---------- */
+  .edu-card .edu-photo { aspect-ratio: 16 / 9 !important; }
+  .edu-card .edu-photo img { object-fit: cover !important; }
 
   /* lightbox nunca deve aparecer no PDF */
   .lightbox { display: none !important; }

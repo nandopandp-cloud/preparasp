@@ -323,6 +323,16 @@
     window.addEventListener('beforeprint', () => {
       pdfBtn.dataset.prevTitle = document.title;
       document.title = 'PreparaSP - Relatorio de pesquisa de campo';
+      // garante que números/barras estejam preenchidos mesmo via Ctrl+P
+      document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-in'));
+      document.querySelectorAll('[data-count]').forEach((el) => {
+        const t = parseFloat(el.dataset.count);
+        const dec = parseInt(el.dataset.decimals || '0', 10);
+        const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        el.textContent = pre + t.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+      });
+      document.querySelectorAll('.bar[data-pct]').forEach((b) => { b.style.width = b.dataset.pct + '%'; });
+      document.querySelectorAll('.pct[data-pct]').forEach((p) => { p.textContent = p.dataset.pct + '%'; });
     });
     window.addEventListener('afterprint', () => {
       if (pdfBtn.dataset.prevTitle) document.title = pdfBtn.dataset.prevTitle;
