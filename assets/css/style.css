@@ -123,6 +123,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px var(--gutter);
   transition: background .4s ease, box-shadow .4s ease, padding .4s ease;
+  /* leve véu para a navbar não ficar "pendurada" direto sobre a foto do hero */
+  background: linear-gradient(to bottom, rgba(7,12,33,.5) 0%, rgba(7,12,33,.22) 70%, transparent 100%);
 }
 .nav.is-stuck { background: var(--glass-bg); backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%); box-shadow: var(--shadow-sm); border-bottom: 1px solid var(--glass-border); padding-block: 10px; }
 .nav__brand { display: flex; align-items: center; gap: 13px; }
@@ -157,27 +159,32 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   padding: 0; overflow: hidden; background: var(--ink); color: #fff; isolation: isolate;
 }
 
-/* a foto cobre 100% do hero — ponto focal puxado para o topo p/ liberar a base p/ o texto */
+/* a foto cobre 100% do hero — ponto focal puxado para o topo p/ liberar a base p/ o texto.
+   Escala extra (1.22x) "afasta" o enquadramento dos pescoços/ombros, mantendo os rostos
+   inteiros visíveis mas reduzindo a área de pele que fica perto da faixa de texto. */
 .hero__photo { position: absolute; inset: 0; z-index: 0; margin: 0; }
 .hero__photo img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 16%; display: block;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 0%; display: block;
+  transform-origin: center 6%;
   /* leve realce de cor sem distorcer a identidade */
   filter: saturate(1.04) contrast(1.02);
   animation: hero-zoom 18s ease-out both;
 }
-@keyframes hero-zoom { from { transform: scale(1.07); } to { transform: scale(1); } }
+@keyframes hero-zoom { from { transform: scale(1.28); } to { transform: scale(1.22); } }
 
 /* scrim: cria uma faixa nobre inferior para o texto, preservando os rostos no topo.
-   A base fica sólida o suficiente para leitura; o meio (onde estão os rostos) permanece limpo. */
+   Altura fixa em px (não em %) para a faixa escura cobrir sempre a mesma área visual,
+   independente da proporção da tela — em telas largas e baixas isso evita que o texto
+   "suba" para a faixa onde ficam os rostos. */
 .hero__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    linear-gradient(to top, rgba(7,12,33,.96) 0%, rgba(7,12,33,.92) 30%, rgba(7,12,33,.72) 46%, rgba(7,12,33,.30) 58%, rgba(7,12,33,.04) 70%, transparent 80%),
+    linear-gradient(to top, rgba(7,12,33,.97) 0, rgba(7,12,33,.97) clamp(280px, 40vh, 460px), rgba(7,12,33,.72) calc(clamp(280px, 40vh, 460px) + 90px), rgba(7,12,33,.25) calc(clamp(280px, 40vh, 460px) + 200px), transparent calc(clamp(280px, 40vh, 460px) + 320px)),
     /* leve véu no topo para o nav/logo respirarem */
     linear-gradient(to bottom, rgba(7,12,33,.4) 0%, transparent 14%);
 }
 
 /* conteúdo ancorado na base, dentro da faixa nobre criada pelo scrim */
-.hero__overlay { position: relative; z-index: 3; width: 100%; padding-bottom: clamp(34px, 5vh, 64px); }
+.hero__overlay { position: relative; z-index: 3; width: 100%; padding-bottom: clamp(22px, 3.5vh, 44px); }
 .hero__copy { max-width: 720px; }
 .hero__tag { margin-bottom: 18px; }
 .hero h1 { font-size: clamp(2.2rem, 5vw, 4.3rem); color: #fff; letter-spacing: -.04em; line-height: 1.04; max-width: 17ch;
@@ -226,11 +233,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 @media (max-width: 760px){
   .hero h1 { font-size: clamp(2rem, 8.4vw, 2.7rem); max-width: 100%; overflow-wrap: break-word; }
   .hero__sub { font-size: 1rem; max-width: 100%; }
-  .hero__overlay { padding-bottom: clamp(26px, 4vh, 40px); }
+  .hero__overlay { padding-bottom: clamp(18px, 3vh, 30px); }
   /* mostra mais do grupo e mantém o rosto central acima do texto */
-  .hero__photo img { object-position: 58% 18%; }
+  .hero__photo img { object-position: 58% 14%; }
   .hero__scrim { background:
-    linear-gradient(to top, rgba(7,12,33,.97) 0%, rgba(7,12,33,.95) 38%, rgba(7,12,33,.74) 52%, rgba(7,12,33,.32) 64%, rgba(7,12,33,.05) 76%, transparent 86%),
+    linear-gradient(to top, rgba(7,12,33,.98) 0%, rgba(7,12,33,.96) 42%, rgba(7,12,33,.78) 56%, rgba(7,12,33,.36) 68%, rgba(7,12,33,.06) 80%, transparent 88%),
     linear-gradient(to bottom, rgba(7,12,33,.42) 0%, transparent 16%);
   }
 }
