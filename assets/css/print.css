@@ -22,6 +22,10 @@
   .cta { background: #2547ff !important; }
 
   .hero, .quotes, .recs, .cta, .schools-card { color: #fff !important; }
+  /* sobre o navy do hero no papel, o texto auxiliar precisa de bom contraste */
+  .hero__sub { color: rgba(255,255,255,.94) !important; }
+  .hero__strip, .hstat, .hstat .num, .hstat .lbl { color: #fff !important; opacity: 1 !important; }
+  .hstat .lbl { color: rgba(255,255,255,.82) !important; }
   .card, .bignum, .mstep, .qcard, .rec, .theme { break-inside: avoid; }
 
   /* quebras de página em seções-chave */
@@ -29,4 +33,29 @@
 
   a[href]::after { content: ""; }
   .cta__btns { display: none; }
+
+  /* galeria: layout estável no PDF (ignora o row-span calculado em JS),
+     mantém as fotos inteiras sem cortar entre páginas */
+  .gal-grid, .gal-grid.is-packed {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-auto-rows: auto !important;
+    gap: 10px !important;
+  }
+  .gal-item {
+    break-inside: avoid;
+    grid-row: auto !important;
+    margin-bottom: 0 !important;
+    border: 1px solid #d6dcea;
+  }
+  .gal-item img { height: auto !important; object-fit: contain !important; }
+  /* legendas das fotos sempre visíveis no papel */
+  .gal-item .cap { position: static !important; opacity: 1 !important; transform: none !important; color: #0a1230 !important; background: none !important; padding: 6px 4px 0 !important; }
+
+  /* cards de educadores: foto + texto inteiros na página */
+  .edu-card { break-inside: avoid; }
+  .edu-card .edu-photo img { object-fit: cover; }
+
+  /* lightbox nunca deve aparecer no PDF */
+  .lightbox { display: none !important; }
 }

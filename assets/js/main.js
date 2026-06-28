@@ -299,6 +299,36 @@
     });
   }
 
+  /* ---------- baixar PDF (impressão nativa do navegador) ---------- */
+  const pdfBtn = document.querySelector('[data-download-pdf]');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', () => {
+      // garante que todo conteúdo animado esteja visível antes de imprimir
+      document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-in'));
+      // preenche números/percentuais que ainda não animaram
+      document.querySelectorAll('[data-count]').forEach((el) => {
+        if (!el.textContent.trim() && typeof animateCount === 'function') animateCount(el);
+      });
+      document.querySelectorAll('.bar[data-pct]').forEach((b) => { b.style.width = b.dataset.pct + '%'; });
+      document.querySelectorAll('.pct[data-pct]').forEach((p) => { if (!p.textContent.trim()) p.textContent = p.dataset.pct + '%'; });
+
+      pdfBtn.classList.add('is-printing');
+      // pequeno atraso para o reflow aplicar antes da janela de impressão
+      setTimeout(() => {
+        window.print();
+        pdfBtn.classList.remove('is-printing');
+      }, 120);
+    });
+    // título do arquivo sugerido no diálogo "Salvar como PDF"
+    window.addEventListener('beforeprint', () => {
+      pdfBtn.dataset.prevTitle = document.title;
+      document.title = 'PreparaSP - Relatorio de pesquisa de campo';
+    });
+    window.addEventListener('afterprint', () => {
+      if (pdfBtn.dataset.prevTitle) document.title = pdfBtn.dataset.prevTitle;
+    });
+  }
+
   /* ---------- current year ---------- */
   const yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
