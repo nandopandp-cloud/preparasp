@@ -1,28 +1,28 @@
 /* PreparaSP · Relatório de pesquisa de campo
    ---------------------------------------------------------------------------
-   Todo o conteúdo abaixo é derivado das 4 rodas de conversa em grupo
+   Todo o conteúdo abaixo é derivado das conversas com os estudantes
    realizadas nas escolas (2º e 3º ano do Ensino Médio).
    Cada conversa foi documentada para análise, e as falas foram editadas
    para clareza, preservando o sentido.
-   Os percentuais dos "temas" indicam em quantas das 4 rodas o assunto
-   apareceu de forma relevante (leitura qualitativa, não estatística).
+   Os percentuais dos "temas" indicam a recorrência com que o assunto
+   apareceu nas conversas (leitura qualitativa, não estatística).
    Edite o objeto DATA para atualizar o relatório.
    --------------------------------------------------------------------------- */
 (function () {
   'use strict';
 
   const DATA = {
-    /* ---- grandes temas: pct = % das 4 rodas em que o tema apareceu ---- */
+    /* ---- grandes temas: pct = recorrência com que o tema apareceu nas conversas ---- */
     themes: [
-      { icon: '🗓️', title: 'Cronograma e organização do estudo', desc: 'O “por onde começar” é o nó central: muito conteúdo, pouca direção. Apareceu nas 4 rodas.', pct: 100, tone: '' },
-      { icon: '♿', title: 'Personalização e acessibilidade', desc: 'Recursos para necessidades específicas (ex.: TDAH) já existem, mas passam despercebidos. Há vontade de editar a própria trilha. 4 rodas.', pct: 100, tone: '' },
-      { icon: '📚', title: 'Conteúdo: vídeos, resumos e biblioteca', desc: 'Vídeos existem, mas o consumo é baixo e a biblioteca é quase ignorada. Pedem resumos e flashcards. 4 rodas.', pct: 100, tone: '' },
-      { icon: '🎮', title: 'Gamificação e recompensas', desc: 'A ofensiva, a Liga e os avatares já engajam; o desejo é por mais coleções e prêmios. 3 das 4 rodas.', pct: 75, tone: 'mint' },
-      { icon: '📱', title: 'Acesso, dispositivos e ambiente', desc: 'Uso preso ao computador da escola; pouco ou nenhum uso em casa e no fim de semana. 3 das 4 rodas.', pct: 75, tone: 'warm' },
-      { icon: '📝', title: 'Simulados', desc: 'ENEM, Provão Paulista e SARESP: fáceis de localizar e bem reconhecidos. 3 das 4 rodas.', pct: 75, tone: 'mint' },
-      { icon: '🧭', title: 'Navegação e primeira impressão', desc: '“Estudar” é o clique natural, mas “tudo muito misturado”: pedem uma interface mais simples. 3 das 4 rodas.', pct: 75, tone: '' },
-      { icon: '✍️', title: 'Redação Paulista', desc: 'Tema dominante na roda do 3º ano: medo de perder o texto, envio engessado e temas difíceis. 2 das 4 rodas.', pct: 50, tone: 'warm' },
-      { icon: '🎓', title: 'Futuro e escolha profissional', desc: 'Estudantes decidindo o vestibular pedem orientação, com interesse claro por um teste vocacional. 1 das 4 rodas.', pct: 25, tone: 'mint' },
+      { icon: '🗓️', title: 'Cronograma e organização do estudo', desc: 'O “por onde começar” é o nó central: muito conteúdo, pouca direção. Apareceu em todas as conversas com os estudantes.', pct: 100, tone: '' },
+      { icon: '♿', title: 'Personalização e acessibilidade', desc: 'Recursos para necessidades específicas (ex.: TDAH) já existem, mas passam despercebidos. Há vontade de editar a própria trilha. Tema recorrente em todas as conversas.', pct: 100, tone: '' },
+      { icon: '📚', title: 'Conteúdo: vídeos, resumos e biblioteca', desc: 'Vídeos existem, mas o consumo é baixo e a biblioteca é quase ignorada. Pedem resumos e flashcards. Presente em todas as conversas.', pct: 100, tone: '' },
+      { icon: '🎮', title: 'Gamificação e recompensas', desc: 'A ofensiva, a Liga e os avatares já engajam; o desejo é por mais coleções e prêmios. Recorrente na maioria das conversas.', pct: 75, tone: 'mint' },
+      { icon: '📱', title: 'Acesso, dispositivos e ambiente', desc: 'Uso preso ao computador da escola; pouco ou nenhum uso em casa e no fim de semana. Recorrente na maioria das conversas.', pct: 75, tone: 'warm' },
+      { icon: '📝', title: 'Simulados', desc: 'ENEM, Provão Paulista e SARESP: fáceis de localizar e bem reconhecidos. Citados na maioria das conversas.', pct: 75, tone: 'mint' },
+      { icon: '🧭', title: 'Navegação e primeira impressão', desc: '“Estudar” é o clique natural, mas “tudo muito misturado”: pedem uma interface mais simples. Recorrente na maioria das conversas.', pct: 75, tone: '' },
+      { icon: '✍️', title: 'Redação Paulista', desc: 'Tema dominante entre os estudantes do 3º ano: medo de perder o texto, envio engessado e temas difíceis. Apareceu em boa parte das conversas.', pct: 50, tone: 'warm' },
+      { icon: '🎓', title: 'Futuro e escolha profissional', desc: 'Estudantes decidindo o vestibular pedem orientação, com interesse claro por um teste vocacional. Apareceu em parte das conversas.', pct: 25, tone: 'mint' },
     ],
 
     /* ---- dores ---- */
@@ -37,7 +37,7 @@
         icon: '🖥️', tag: 'Acesso · dispositivos',
         title: 'Preso ao computador da escola',
         text: 'O uso fica concentrado no laboratório. “O computador não dá pra baixar e não tem como usar no sábado.” No celular, reconhecem, o uso “seria bem maior”, mas o caminho mobile ainda não flui.',
-        metric: { v: '3/4', k: 'rodas citaram a barreira de acesso' },
+        metric: { v: 'recorrente', k: 'barreira de acesso citada na maioria das conversas' },
       },
       {
         icon: '🌀', tag: 'Cronograma · sobrecarga',
@@ -127,7 +127,7 @@
       { text: 'O computador não dá pra baixar, e não tem como usar no sábado.', who: 'Estudante · 2º ano', meta: 'Sobre acesso e dispositivos', hl: false },
       { text: 'Eu preciso ser compensado pra querer estudar. Estudar, pra mim, não é algo interessante por si só.', who: 'Estudante · 3º ano', meta: 'Sobre motivação', hl: true },
       { text: 'A gente tem muito aluno imigrante, da Venezuela, de países de língua francesa, e a plataforma só tem português.', who: 'Educador(a) · em campo', meta: 'Sobre inclusão e equidade', hl: false },
-      { text: 'A galera já tem 47 dias de ofensiva.', who: 'Roda de conversa', meta: 'Sobre engajamento e hábito', hl: true },
+      { text: 'A galera já tem 47 dias de ofensiva.', who: 'Conversa com estudantes', meta: 'Sobre engajamento e hábito', hl: true },
     ],
 
     /* ---- recomendações ---- */

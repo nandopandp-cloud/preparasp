@@ -9,8 +9,8 @@
   .bar[data-pct] { width: var(--print-w, 100%) !important; }
 
   /* esconde elementos interativos/flutuantes */
-  .nav, .dock, .progressbar, .hero__scroll, .hero__blob, .hero__grid-overlay,
-  .quotes__bg { display: none !important; }
+  .nav, .dock, .progressbar, .hero__scroll, .hero__blob, .hero__grid,
+  .hero__float, .quotes__bg { display: none !important; }
 
   body { background: #fff; color: #0a1230; }
   .hero { min-height: auto; padding: 32px 0 24px; background: #0a1230 !important; }
