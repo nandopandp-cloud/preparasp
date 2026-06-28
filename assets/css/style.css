@@ -188,7 +188,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   padding-bottom: clamp(28px, 4vh, 56px); }
 .hero__copy { max-width: 720px; margin-top: auto; }
 .hero__tag { margin-bottom: 18px; }
-.hero h1 { font-size: clamp(2.2rem, 5vw, 4.3rem); color: #fff; letter-spacing: -.04em; line-height: 1.04; max-width: 17ch;
+.hero h1 { font-size: clamp(2.2rem, 5vw, 4rem); color: #fff; letter-spacing: -.04em; line-height: 1.04; max-width: 17ch;
   text-shadow: 0 2px 30px rgba(0,0,0,.5); }
 .hero h1 .grad { background: linear-gradient(113deg, #ff9100 10% 10%, #feb75d 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero__sub { margin-top: 18px; max-width: 56ch; font-size: clamp(1rem, 1.4vw, 1.18rem); color: #dbe1f7; text-shadow: 0 1px 16px rgba(0,0,0,.45); }
