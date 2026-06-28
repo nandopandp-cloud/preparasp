@@ -168,9 +168,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block;
   /* leve realce de cor sem distorcer a identidade */
   filter: saturate(1.04) contrast(1.02);
-  animation: hero-zoom 18s ease-out both;
+  animation: hero-zoom 22s ease-in-out infinite alternate both;
 }
-@keyframes hero-zoom { from { transform: scale(1.07); } to { transform: scale(1); } }
+@keyframes hero-zoom { from { transform: scale(1); } to { transform: scale(1.08); } }
 
 /* scrim: escurece a base para dar legibilidade ao texto, mantendo os rostos limpos no topo */
 .hero__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
