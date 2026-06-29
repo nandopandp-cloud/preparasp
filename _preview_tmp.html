@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PreparaSP · Relatório de Pesquisa de Campo com Estudantes</title>
+<meta name="description" content="Relatório de pesquisa de campo da plataforma PreparaSP com estudantes do 2º e 3º ano do Ensino Médio. Insights, dores e oportunidades a partir de imersão em 5 escolas com mais de 300 estudantes." />
+<meta property="og:title" content="PreparaSP · Relatório de Pesquisa de Campo" />
+<meta property="og:description" content="Insights, dores e oportunidades do PreparaSP a partir de imersão com mais de 300 estudantes em 5 escolas." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/img/logo-prepara.png" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/print.css" media="print" />
+<style>[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}
+.to-top{opacity:1!important;visibility:visible!important;transform:none!important;}</style>
+</head>
+<body>
+<div class="progressbar"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <a class="nav__brand" href="#top">
+    <img class="nav__logo-img" src="assets/img/logo-prepara.png" alt="PreparaSP" />
+    <span class="nav__brand-text">Relatório de pesquisa de campo</span>
+  </a>
+  <div class="nav__links">
+    <a href="#panorama">Panorama</a>
+    <a href="#metodologia">Metodologia</a>
+    <a href="#educadores">Educadores</a>
+    <a href="#dores">Dores</a>
+    <a href="#oportunidades">Oportunidades</a>
+    <a href="#vozes">Vozes</a>
+    <a href="#recomendacoes">Recomendações</a>
+  </div>
+  <button type="button" class="nav__cta" data-download-pdf>
+    <svg class="nav__cta-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Baixar PDF
+  </button>
+</nav>
+
+<!-- floating dock -->
+<div class="dock">
+  <a href="#top" data-label="Início" class="is-active"></a>
+  <a href="#panorama" data-label="Panorama"></a>
+  <a href="#metodologia" data-label="Metodologia"></a>
+  <a href="#educadores" data-label="Educadores"></a>
+  <a href="#temas" data-label="Temas"></a>
+  <a href="#dores" data-label="Dores"></a>
+  <a href="#oportunidades" data-label="Oportunidades"></a>
+  <a href="#vozes" data-label="Vozes"></a>
+  <a href="#galeria" data-label="Imersão"></a>
+  <a href="#recomendacoes" data-label="Recomendações"></a>
+</div>
+
+<!-- botão "voltar ao topo" -->
+<a href="#top" class="to-top" aria-label="Me leve ao topo" title="Me leve ao topo">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 19V6m0 0l-6 6m6-6l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="to-top__label">Topo</span>
+</a>
+
+<!-- ===================== HERO (full-bleed) ===================== -->
+<header class="hero hero--bleed" id="top">
+  <figure class="hero__photo" aria-hidden="false">
+    <img class="hero__photo-screen" src="assets/img/hero-estudantes.png" alt="Estudantes da rede estadual de São Paulo conversando em frente à escola, vestindo o uniforme do PreparaSP" loading="eager" />
+    <img class="hero__photo-print" src="assets/img/hero-estudantes-print.jpg" alt="" aria-hidden="true" />
+    <span class="hero__scrim" aria-hidden="true"></span>
+  </figure>
+
+  <!-- <div class="hero__floats" aria-hidden="true">
+    <div class="hero__float hero__float--a">
+      <span class="hf-k">Escuta</span>
+      <span class="hf-v">Em campo, presencial</span>
+    </div>
+    <div class="hero__float hero__float--b">
+      <span class="hf-k">Foco</span>
+      <span class="hf-v">2º e 3º ano</span>
+    </div>
+  </div> -->
+
+  <div class="wrap hero__overlay">
+    <div class="hero__copy">
+      <!-- <span class="status-badge hero__tag" data-reveal>
+        <span class="dot"></span>
+        <span>Pesquisa de campo · Rede Estadual de São Paulo</span>
+      </span> -->
+      <h1 data-reveal data-reveal-delay="1">A voz de quem usa <br>o<span class="grad"> PreparaSP</span> todos <br>os dias.</h1>
+      <p class="hero__sub" data-reveal data-reveal-delay="2">
+        Uma imersão presencial com estudantes do 2º e 3º ano do Ensino Médio para entender,
+        na prática, o que funciona, o que trava e onde estão as maiores oportunidades da plataforma.
+      </p>
+    </div>
+
+    <div class="hero__strip" data-reveal data-reveal-delay="3">
+      <div class="hstat"><div class="num"><span data-count="5">0</span></div><div class="lbl">Escolas</div></div>
+      <div class="hstat"><div class="num"><span data-count="300">0</span></div><div class="lbl">Estudantes</div></div>
+      <div class="hstat"><div class="num"><span data-count="2">0</span></div><div class="lbl">Séries em Foco (2º e 3º ano)</div></div>
+      <div class="hstat"><div class="num"><span data-count="45">0</span></div><div class="lbl">Horas de pesquisa em campo</div></div>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span>Role para explorar</span>
+    <span class="mouse"></span>
+  </div>
+</header>
+
+<!-- ===================== INTRO / BIG NUMBERS ===================== -->
+<section class="section bignums" id="panorama">
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow"><span class="dot"></span> Panorama da pesquisa</span>
+      <h2>O que aprendemos ouvindo a sala de aula.</h2>
+      <p>Fomos até as escolas para compreender as principais dores, frustrações, necessidades e expectativas dos estudantes que utilizam o PreparaSP e outras plataformas digitais como apoio na preparação para o vestibular e o ENEM. Este relatório reúne os principais insights coletados durante essa pesquisa de campo.</p>
+    </div>
+    <div class="bignum-grid">
+      <article class="bignum" data-reveal data-reveal-delay="1">
+        <div class="ic">🎯</div>
+        <div class="n"><span data-count="300">0</span></div>
+        <div class="label">Estudantes na amostra</div>
+        <div class="desc">2º e 3º ano do Ensino Médio, ouvidos presencialmente nas cinco escolas.</div>
+      </article>
+      <article class="bignum bignum--accent" data-reveal data-reveal-delay="2">
+        <div class="ic">🏫</div>
+        <div class="n"><span data-count="5">0</span></div>
+        <div class="label">Escolas visitadas</div>
+        <div class="desc">Realidades, perfis e níveis de adoção diferentes da plataforma.</div>
+      </article>
+      <article class="bignum bignum--mint" data-reveal data-reveal-delay="3">
+        <div class="ic">🗣️</div>
+        <div class="n"><span data-count="2">0</span></div>
+        <div class="label">Séries em foco</div>
+        <div class="desc">Conversas com estudantes do 2º e 3º ano, documentadas e analisadas trecho a trecho.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METODOLOGIA ===================== -->
+<section class="section method" id="metodologia">
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow"><span class="dot"></span> Como ouvimos</span>
+      <h2>Metodologia: imersão presencial, na linguagem do estudante.</h2>
+      <p>Pesquisa qualitativa de campo, conduzida com estudantes reais, em ambiente real, com objetivo de capturar percepções espontâneas sobre o uso do PreparaSP.</p>
+    </div>
+    <div class="method-grid">
+      <div class="method-steps">
+        <div class="mstep" data-reveal data-reveal-delay="1"><div class="num">01</div><div><h4>Visita às escolas</h4><p>Cinco unidades da rede estadual, com turmas de 2º e 3º ano do Ensino Médio.</p></div></div>
+        <div class="mstep" data-reveal data-reveal-delay="2"><div class="num">02</div><div><h4>Conversas com os estudantes</h4><p>Conversas abertas, em grupo, sobre a rotina de estudo e o uso da plataforma.</p></div></div>
+        <div class="mstep" data-reveal data-reveal-delay="3"><div class="num">03</div><div><h4>Documentação das conversas</h4><p>Cada conversa foi documentada integralmente para análise posterior, preservando a fala de cada estudantes.</p></div></div>
+        <div class="mstep" data-reveal data-reveal-delay="4"><div class="num">04</div><div><h4>Análise temática</h4><p>Organização e codificação dos trechos em insights, dores e oportunidades acionáveis.</p></div></div>
+      </div>
+      <aside class="schools-card" data-reveal data-reveal-delay="2">
+        <h3>Por onde passou o time do PreparaSP</h3>
+        <p style="color:#aab4e6;margin-top:10px;font-size:.95rem">Visitamos 5 escolas da rede estadual, conversando com aproximadamente 300 estudantes da 2º e 3º série do Ensino Médio.</p>
+        <div class="schools-list">
+          <div class="school-item"><span class="si-ic">🏫</span><div><div class="si-name">E.E. Professor Fidelino de Figueiredo</div><div class="si-meta">URE Centro · 2º e 3º ano</div></div></div>
+          <div class="school-item"><span class="si-ic">🏫</span><div><div class="si-name">E.E. Brasílio Machado</div><div class="si-meta">URE Centro-Sul · 2º e 3º ano</div></div></div>
+          <div class="school-item"><span class="si-ic">🏫</span><div><div class="si-name">E.E. João Ramalho</div><div class="si-meta">São Bernardo do Campo · 2º e 3º ano</div></div></div>
+          <div class="school-item"><span class="si-ic">🏫</span><div><div class="si-name">E.E. Santa Dalmolin</div><div class="si-meta">São Bernardo do Campo · 2º e 3º ano</div></div></div>
+          <div class="school-item"><span class="si-ic">🏫</span><div><div class="si-name">E.E. Professora Heloisa de Assumpção</div><div class="si-meta">Osasco · 2º e 3º ano</div></div></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VISÃO DOS EDUCADORES (UREs) ===================== -->
+<section class="section educators section--ink" id="educadores">
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow eyebrow--light"><span class="dot"></span> Quem está na escola todo dia</span>
+      <h2>A visão de quem conduz a sala de aula.</h2>
+      <p>Além dos estudantes, ouvimos professores, coordenadores e diretores das unidades escolares. São eles que acompanham o uso do PreparaSP no dia a dia e enxergam, de perto, o que sustenta o engajamento e o que ainda precisa evoluir.</p>
+    </div>
+    <div class="educators-grid">
+      <article class="edu-card" data-reveal data-reveal-delay="1">
+        <figure class="edu-photo"><img src="assets/GenieX/UREGuarulhosNorte.jpeg" alt="Encontro com professores, coordenadores e diretores da URE Guarulhos Norte" loading="lazy" /></figure>
+        <div class="edu-body">
+          <h3>URE Guarulhos Norte</h3>
+          <p class="edu-role">Professores, coordenadores e diretores</p>
+          <p class="edu-text">A leitura dos educadores reforça que a plataforma é mais potente quando conectada à rotina pedagógica da escola, e não usada de forma isolada pelo estudante.</p>
+        </div>
+      </article>
+      <article class="edu-card" data-reveal data-reveal-delay="2">
+        <figure class="edu-photo"><img src="assets/GenieX/leste.jpeg" alt="Encontro com professores, coordenadores e diretores da URE Leste 3" loading="lazy" /></figure>
+        <div class="edu-body">
+          <h3>URE Leste 3</h3>
+          <p class="edu-role">Professores, coordenadores e diretores</p>
+          <p class="edu-text">A equipe destaca o valor do PreparaSP como apoio à preparação para o vestibular e o ENEM, e aponta a clareza de orientação ao estudante como ponto a fortalecer.</p>
+        </div>
+      </article>
+      <article class="edu-card" data-reveal data-reveal-delay="3">
+        <figure class="edu-photo"><img src="assets/GenieX/santoandre.jpeg" alt="Encontro com professores, coordenadores e diretores da URE Santo André" loading="lazy" /></figure>
+        <div class="edu-body">
+          <h3>URE Santo André</h3>
+          <p class="edu-role">Professores, coordenadores e diretores</p>
+          <p class="edu-text">Os educadores observam que o acompanhamento próximo da turma faz diferença direta no engajamento e na constância de uso da plataforma pelos estudantes.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEMAS (deep dive bars) ===================== -->
+<section class="section themes" id="temas">
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow"><span class="dot"></span> Os grandes temas</span>
+      <h2>O que mais apareceu nas conversas.</h2>
+      <p>As barras indicam <b>com que recorrência</b> cada tema apareceu nas conversas com os estudantes. É uma leitura qualitativa de quanto o assunto se repetiu.</p>
+    </div>
+    <div class="theme-row" id="themesRows">
+      <!-- preenchido a partir das transcrições -->
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DORES ===================== -->
+<section class="section" id="dores" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow eyebrow--warm"><span class="dot"></span> Dores e fricções</span>
+      <h2>Onde a experiência ainda trava.</h2>
+      <p>Os obstáculos que mais apareceram quando os estudantes falaram sobre usar, ou desistir de usar, o PreparaSP.</p>
+    </div>
+    <div class="cards-grid" id="painsGrid">
+      <!-- preenchido a partir das transcrições -->
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OPORTUNIDADES ===================== -->
+<section class="section" id="oportunidades" style="background:var(--white)">
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow eyebrow--mint"><span class="dot"></span> Oportunidades</span>
+      <h2>O que pode transformar a plataforma.</h2>
+      <p>As oportunidades mais claras para tornar o PreparaSP mais útil, mais usado e mais querido pelos estudantes.</p>
+    </div>
+    <div class="cards-grid" id="oppsGrid">
+      <!-- preenchido a partir das transcrições -->
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VOZES / QUOTES ===================== -->
+<section class="section quotes" id="vozes">
+  <div class="quotes__bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow eyebrow--light"><span class="dot"></span> Nas próprias palavras</span>
+      <h2 style="color: #ffffff;">As vozes dos estudantes.</h2>
+      <p>Trechos reais das conversas com os estudantes.</p>
+    </div>
+    <div class="quote-rail" id="quoteRail">
+      <!-- preenchido a partir das transcrições -->
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALERIA ===================== -->
+<section class="section gallery" id="galeria">
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow"><span class="dot"></span> A imersão em campo</span>
+      <h2>Registros da pesquisa.</h2>
+      <p>Fotografias das visitas às escolas e das conversas com os estudantes durante a imersão presencial em campo.</p>
+    </div>
+    <div class="gal-grid">
+      <figure class="gal-item" data-reveal>
+        <img src="assets/GenieX/estudantes/conversa-04.jpeg" alt="Estudantes reunidos junto à tenda do PreparaSP" loading="lazy" />
+        <figcaption class="cap">Estudantes reunidos na imersão</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="1">
+        <img src="assets/GenieX/estudantes/conversa-08.jpeg" alt="Estudantes em conversa em grupo" loading="lazy" />
+        <figcaption class="cap">Conversa em grupo</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="1">
+        <img src="assets/GenieX/estudantes/conversa-05.jpeg" alt="Estudantes na tenda do PreparaSP" loading="lazy" />
+        <figcaption class="cap">Estudantes na tenda do PreparaSP</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="2">
+        <img src="assets/GenieX/estudantes/conversa-06.jpeg" alt="Estudantes interagindo durante a atividade" loading="lazy" />
+        <figcaption class="cap">Interação durante a atividade</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="3">
+        <img src="assets/GenieX/estudantes/conversa-01.jpeg" alt="Apresentação do PreparaSP para a turma" loading="lazy" />
+        <figcaption class="cap">Apresentação para a turma</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="1">
+        <img src="assets/GenieX/estudantes/conversa-0003.jpeg" alt="Conversa com estudantes durante a imersão em quadra" loading="lazy" />
+        <figcaption class="cap">Conversa com estudantes em campo</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="2">
+        <img src="assets/GenieX/estudantes/conversa-09.jpeg" alt="Estudantes conversando na quadra" loading="lazy" />
+        <figcaption class="cap">Conversa na quadra</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="3">
+        <img src="assets/GenieX/estudantes/conversa-10.jpeg" alt="Apresentação do PreparaSP para os estudantes" loading="lazy" />
+        <figcaption class="cap">Turma participante da pesquisa</figcaption>
+      </figure>
+      <figure class="gal-item" data-reveal data-reveal-delay="1">
+        <img src="assets/GenieX/estudantes/conversa-02.jpeg" alt="Conversa com estudantes em sala de aula" loading="lazy" />
+        <figcaption class="cap">Conversa com a turma em sala</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Lightbox / visualização em tela cheia -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualização da foto">
+    <div class="lightbox__stage" id="lbStage">
+      <img class="lightbox__img" id="lbImg" src="" alt="" />
+    </div>
+    <p class="lightbox__cap" id="lbCap"></p>
+    <div class="lightbox__bar">
+      <button type="button" class="lb-btn" data-lb="zoom-out" aria-label="Diminuir zoom">&minus;</button>
+      <button type="button" class="lb-btn" data-lb="reset" aria-label="Restaurar zoom">100%</button>
+      <button type="button" class="lb-btn" data-lb="zoom-in" aria-label="Aumentar zoom">+</button>
+    </div>
+    <button type="button" class="lightbox__nav lightbox__prev" data-lb="prev" aria-label="Foto anterior">&#8249;</button>
+    <button type="button" class="lightbox__nav lightbox__next" data-lb="next" aria-label="Próxima foto">&#8250;</button>
+    <button type="button" class="lightbox__close" data-lb="close" aria-label="Fechar">&times;</button>
+  </div>
+</section>
+
+<!-- ===================== RECOMENDAÇÕES ===================== -->
+<section class="section recs" id="recomendacoes">
+  <div class="wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow eyebrow--light"><span class="dot"></span> Caminho a seguir</span>
+      <h2 style="color: #ffffff;">Recomendações prioritárias.</h2>
+      <p>Movimentos concretos, ordenados por prioridade, para evoluir o PreparaSP a partir do que ouvimos em campo.</p>
+    </div>
+    <div class="rec-grid" id="recGrid">
+      <!-- preenchido a partir das transcrições -->
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<!-- <section class="section cta">
+  <div class="wrap">
+    <h2 data-reveal>Da escuta à ação.</h2>
+    <p data-reveal data-reveal-delay="1">Este relatório nasce da voz dos estudantes. O próximo passo é transformar cada insight em melhorias reais na experiência do PreparaSP.</p>
+    <div class="cta__btns" data-reveal data-reveal-delay="2">
+      <a class="btn btn--light" href="#dores">Ver as dores mapeadas</a>
+      <a class="btn btn--ghost" href="#oportunidades">Explorar oportunidades</a>
+    </div>
+  </div>
+</section> -->
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap frow">
+    <a class="nav__brand footer__brand" href="#top">
+      <img class="footer__logo-img" src="assets/img/logo-prepara.png" alt="PreparaSP" />
+    </a>
+    <small>Pesquisa de campo com os estudantes da 2ª e 3ª série do Ensino Médio do Estado de São Paulo.</small>
+  </div>
+</footer>
+
+<!-- Documento exclusivo para PDF (gerado sob demanda, oculto na tela) -->
+<div id="pdf-doc" aria-hidden="true"></div>
+
+<script src="assets/js/content.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
