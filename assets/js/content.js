@@ -252,9 +252,31 @@
   function pdfPage(inner, opts) {
     opts = opts || {};
     const cls = 'pdfpage' + (opts.ink ? ' pdfpage--ink' : '') + (opts.cover ? ' pdfpage--cover' : '') + (opts.cls ? ' ' + opts.cls : '');
-    const foot = opts.cover ? '' :
-      `<div class="pdf-foot"><span>PreparaSP · Relatório de pesquisa de campo</span><span class="pdf-foot__pg"></span></div>`;
-    return `<section class="${cls}">${inner}${foot}</section>`;
+    if (opts.cover) {
+      // capa não usa o esqueleto body/rodapé
+      return `<section class="${cls}">${inner}</section>`;
+    }
+    const foot = `<div class="pdf-foot"><span>PreparaSP · Relatório de pesquisa de campo</span><span class="pdf-foot__pg"></span></div>`;
+    return `<section class="${cls}"><div class="pdf-body">${inner}</div>${foot}</section>`;
+  }
+
+  /* cabeçalho de seção: na 1ª página mostra kicker+título+lead; nas continuações,
+     um cabeçalho enxuto ("(continuação)") para manter contexto sem repetir tudo. */
+  function pdfHead(kicker, tone, title, lead, leadInk) {
+    return `${pdfKicker(kicker, tone)}
+      <h2 class="pdf-h2">${title}</h2>
+      <p class="pdf-lead${leadInk ? ' pdf-lead--ink' : ''}">${lead}</p>`;
+  }
+  function pdfHeadCont(kicker, tone, title) {
+    return `${pdfKicker(kicker, tone)}
+      <h2 class="pdf-h2 pdf-h2--cont">${title} <span class="pdf-cont">continuação</span></h2>`;
+  }
+
+  // divide uma lista de itens (strings de HTML) em páginas de no máx. `per` itens
+  function paginate(items, per) {
+    const pages = [];
+    for (let i = 0; i < items.length; i += per) pages.push(items.slice(i, i + per));
+    return pages;
   }
 
   function pdfKicker(label, tone) {
@@ -328,59 +350,56 @@
           </div>`).join('')}
       </div>`, { ink: true });
 
-    const themes = pdfPage(`
-      ${pdfKicker('Os grandes temas')}
-      <h2 class="pdf-h2">O que mais apareceu nas conversas.</h2>
-      <p class="pdf-lead">As barras indicam a <b>recorrência</b> com que cada tema surgiu nas conversas com os estudantes. É uma leitura qualitativa de quanto o assunto se repetiu.</p>
-      <div class="pdf-themes">
-        ${themesSorted.map((t) => `
-          <div class="pdf-theme">
-            <div class="pdf-theme__head"><b>${esc(t.title)}</b><span class="pdf-theme__pct">${t.pct}%</span></div>
-            <div class="pdf-theme__track"><span class="pdf-theme__fill${t.tone ? ' ' + t.tone : ''}" style="width:${t.pct}%"></span></div>
-            <p>${esc(t.desc)}</p>
-          </div>`).join('')}
-      </div>`);
+    /* ---- TEMAS (paginado: ~5 por página) ---- */
+    const themeItem = (t) => `
+      <div class="pdf-theme">
+        <div class="pdf-theme__head"><b>${esc(t.title)}</b><span class="pdf-theme__pct">${t.pct}%</span></div>
+        <div class="pdf-theme__track"><span class="pdf-theme__fill${t.tone ? ' ' + t.tone : ''}" style="width:${t.pct}%"></span></div>
+        <p>${esc(t.desc)}</p>
+      </div>`;
+    const themes = paginate(themesSorted.map(themeItem), 5).map((chunk, i) => pdfPage(`
+      ${i === 0
+        ? pdfHead('Os grandes temas', '', 'O que mais apareceu nas conversas.', 'As barras indicam a <b>recorrência</b> com que cada tema surgiu nas conversas com os estudantes. É uma leitura qualitativa de quanto o assunto se repetiu.')
+        : pdfHeadCont('Os grandes temas', '', 'O que mais apareceu nas conversas.')}
+      <div class="pdf-themes">${chunk.join('')}</div>`)).join('');
 
-    /* ---- DORES ---- */
-    const pains = pdfPage(`
-      ${pdfKicker('Dores e fricções', 'warm')}
-      <h2 class="pdf-h2">Onde a experiência ainda trava.</h2>
-      <p class="pdf-lead">Os obstáculos que mais apareceram quando os estudantes falaram sobre usar, ou desistir de usar, o PreparaSP.</p>
-      <div class="pdf-cards">
-        ${DATA.pains.map((c) => `
-          <div class="pdf-card pdf-card--warm">
-            <span class="pdf-card__tag">${esc(c.tag)}</span>
-            <b>${esc(c.title)}</b>
-            <p>${esc(c.text)}</p>
-          </div>`).join('')}
-      </div>`);
+    /* ---- DORES (paginado: 6 cards por página) ---- */
+    const painItem = (c) => `
+      <div class="pdf-card pdf-card--warm">
+        <span class="pdf-card__tag">${esc(c.tag)}</span>
+        <b>${esc(c.title)}</b>
+        <p>${esc(c.text)}</p>
+      </div>`;
+    const pains = paginate(DATA.pains.map(painItem), 6).map((chunk, i) => pdfPage(`
+      ${i === 0
+        ? pdfHead('Dores e fricções', 'warm', 'Onde a experiência ainda trava.', 'Os obstáculos que mais apareceram quando os estudantes falaram sobre usar, ou desistir de usar, o PreparaSP.')
+        : pdfHeadCont('Dores e fricções', 'warm', 'Onde a experiência ainda trava.')}
+      <div class="pdf-cards">${chunk.join('')}</div>`)).join('');
 
-    /* ---- OPORTUNIDADES ---- */
-    const opps = pdfPage(`
-      ${pdfKicker('Oportunidades', 'mint')}
-      <h2 class="pdf-h2">O que pode transformar a plataforma.</h2>
-      <p class="pdf-lead">As oportunidades mais claras para tornar o PreparaSP mais útil, mais usado e mais querido pelos estudantes.</p>
-      <div class="pdf-cards">
-        ${DATA.opps.map((c) => `
-          <div class="pdf-card pdf-card--mint">
-            <span class="pdf-card__tag">${esc(c.tag)}</span>
-            <b>${esc(c.title)}</b>
-            <p>${esc(c.text)}</p>
-          </div>`).join('')}
-      </div>`);
+    /* ---- OPORTUNIDADES (paginado: 6 cards por página) ---- */
+    const oppItem = (c) => `
+      <div class="pdf-card pdf-card--mint">
+        <span class="pdf-card__tag">${esc(c.tag)}</span>
+        <b>${esc(c.title)}</b>
+        <p>${esc(c.text)}</p>
+      </div>`;
+    const opps = paginate(DATA.opps.map(oppItem), 6).map((chunk, i) => pdfPage(`
+      ${i === 0
+        ? pdfHead('Oportunidades', 'mint', 'O que pode transformar a plataforma.', 'As oportunidades mais claras para tornar o PreparaSP mais útil, mais usado e mais querido pelos estudantes.')
+        : pdfHeadCont('Oportunidades', 'mint', 'O que pode transformar a plataforma.')}
+      <div class="pdf-cards">${chunk.join('')}</div>`)).join('');
 
-    /* ---- VOZES (navy) ---- */
-    const voices = pdfPage(`
-      ${pdfKicker('Nas próprias palavras', 'light')}
-      <h2 class="pdf-h2">As vozes dos estudantes.</h2>
-      <p class="pdf-lead pdf-lead--ink">Trechos reais das conversas, editados apenas para clareza, preservando o sentido da fala.</p>
-      <div class="pdf-quotes">
-        ${DATA.quotes.map((q) => `
-          <figure class="pdf-quote">
-            <blockquote>${esc(q.text)}</blockquote>
-            <figcaption><b>${esc(q.who)}</b><span>${esc(q.meta)}</span></figcaption>
-          </figure>`).join('')}
-      </div>`, { ink: true });
+    /* ---- VOZES (navy, paginado: 6 por página) ---- */
+    const quoteItem = (q) => `
+      <figure class="pdf-quote">
+        <blockquote>${esc(q.text)}</blockquote>
+        <figcaption><b>${esc(q.who)}</b><span>${esc(q.meta)}</span></figcaption>
+      </figure>`;
+    const voices = paginate(DATA.quotes.map(quoteItem), 6).map((chunk, i) => pdfPage(`
+      ${i === 0
+        ? pdfHead('Nas próprias palavras', 'light', 'As vozes dos estudantes.', 'Trechos reais das conversas, editados apenas para clareza, preservando o sentido da fala.', true)
+        : pdfHeadCont('Nas próprias palavras', 'light', 'As vozes dos estudantes.')}
+      <div class="pdf-quotes">${chunk.join('')}</div>`, { ink: true })).join('');
 
     /* ---- RECOMENDAÇÕES (navy) ---- */
     const highs = DATA.recs.filter((r) => r.prio === 'high');
@@ -390,20 +409,21 @@
         <span class="pdf-rec__n">${esc(r.pr)}</span>
         <div><b>${esc(r.title)}</b><p>${esc(r.text)}</p></div>
       </div>`;
-    const recs = pdfPage(`
-      ${pdfKicker('Caminho a seguir', 'light')}
-      <h2 class="pdf-h2">Recomendações prioritárias.</h2>
-      <p class="pdf-lead pdf-lead--ink">Movimentos concretos, ordenados por prioridade, para evoluir o PreparaSP a partir do que ouvimos em campo.</p>
-      <div class="pdf-recgroup"><span class="pdf-recgroup__label">Prioridade alta</span>${highs.map(recRow).join('')}</div>
+    // página 1: prioridade alta · página 2: próximos passos (evita estourar a página)
+    const recsP1 = pdfPage(`
+      ${pdfHead('Caminho a seguir', 'light', 'Recomendações prioritárias.', 'Movimentos concretos, ordenados por prioridade, para evoluir o PreparaSP a partir do que ouvimos em campo.', true)}
+      <div class="pdf-recgroup"><span class="pdf-recgroup__label">Prioridade alta</span>${highs.map(recRow).join('')}</div>`, { ink: true });
+    const recsP2 = pdfPage(`
+      ${pdfHeadCont('Caminho a seguir', 'light', 'Recomendações prioritárias.')}
       <div class="pdf-recgroup"><span class="pdf-recgroup__label">Próximos passos</span>${mids.map(recRow).join('')}</div>`, { ink: true });
+    const recs = recsP1 + recsP2;
 
     /* ---- ENCERRAMENTO ---- */
     const closing = pdfPage(`
       <div class="pdf-close">
         <img class="pdf-close__logo" src="assets/img/logo-prepara.png" alt="PreparaSP" />
-        <h2 class="pdf-h2">Da escuta à ação.</h2>
+        <h2 class="pdf-h2">PreparaSP</h2>
         <p class="pdf-lead">Este relatório nasce da voz dos estudantes. O próximo passo é transformar cada insight em melhorias reais na experiência do PreparaSP.</p>
-        <p class="pdf-close__meta">Pesquisa de campo com estudantes da 2ª e 3ª série do Ensino Médio · Rede Estadual de São Paulo · Junho de 2026.</p>
       </div>`, { ink: true, cls: 'pdfpage--close' });
 
     host.innerHTML = cover + intro + edu + themes + pains + opps + voices + recs + closing;

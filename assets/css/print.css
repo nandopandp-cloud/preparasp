@@ -39,29 +39,35 @@
     line-height: 1.5;
   }
 
-  /* ---------------- página base ---------------- */
+  /* ---------------- página = caixa A4 fixa, cada seção cabe em 1 página ----------------
+     As seções longas são paginadas no builder (várias .pdfpage), então nenhuma
+     transborda: todas têm padding completo no topo e rodapé próprio. */
   .pdfpage {
     position: relative;
     box-sizing: border-box;
     width: 210mm;
-    min-height: 297mm;
-    padding: 22mm 20mm 18mm;
+    height: 297mm;
+    padding: 20mm 18mm 16mm;
     background: #fff;
     page-break-after: always;
     break-after: page;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
   .pdfpage:last-child { page-break-after: auto; break-after: auto; }
   .pdfpage--ink { background: var(--p-ink); color: #fff; }
+  /* o conteúdo principal ocupa o espaço; o rodapé fica fixo na base da página */
+  .pdfpage > .pdf-body { flex: 1 1 auto; min-height: 0; }
 
   .pdf-foot {
-    position: absolute;
-    left: 20mm; right: 20mm; bottom: 10mm;
+    flex: 0 0 auto;
     display: flex; justify-content: space-between; align-items: center;
+    margin-top: 14px;
     font-size: 8.2pt; letter-spacing: .04em; text-transform: uppercase;
     color: var(--p-muted);
     border-top: 1px solid var(--p-line);
-    padding-top: 6px;
+    padding-top: 8px;
   }
   .pdfpage--ink .pdf-foot { color: rgba(255,255,255,.6); border-top-color: rgba(255,255,255,.16); }
 
@@ -88,6 +94,14 @@
     letter-spacing: -.02em; margin: 0 0 12px;
   }
   .pdfpage--ink .pdf-h2 { color: #fff; }
+  /* cabeçalho de continuação: título menor + marcador discreto */
+  .pdf-h2--cont { font-size: 18pt; margin-bottom: 16px; }
+  .pdf-cont {
+    font-family: 'Geist Mono', monospace; font-size: 8.5pt; font-weight: 500;
+    letter-spacing: .08em; text-transform: lowercase; color: var(--p-muted);
+    vertical-align: middle; margin-left: 6px;
+  }
+  .pdfpage--ink .pdf-cont { color: rgba(255,255,255,.5); }
   .pdf-h3 { font-family: 'Sora','Geist',sans-serif; font-size: 13pt; font-weight: 700; margin: 0 0 10px; letter-spacing: -.01em; }
   .pdf-lead { font-size: 11pt; color: var(--p-muted); max-width: 165mm; margin: 0 0 18px; }
   .pdf-lead--ink { color: rgba(255,255,255,.78); }
@@ -260,13 +274,11 @@
   .pdf-rec p { margin: 3px 0 0; font-size: 9pt; color: rgba(255,255,255,.74); }
 
   /* ================= ENCERRAMENTO ================= */
-  .pdfpage--close { display: flex; align-items: center; justify-content: center; text-align: center; }
-  .pdf-close { max-width: 150mm; }
-  .pdf-close__logo { height: 40px; width: auto; filter: brightness(0) invert(1); margin-bottom: 22px; }
-  .pdf-close .pdf-h2 { font-size: 28pt; }
-  .pdf-close .pdf-lead { color: rgba(255,255,255,.82); margin-left: auto; margin-right: auto; }
-  .pdf-close__meta {
-    margin-top: 20px; font-family: 'Geist Mono', monospace; font-size: 8.4pt;
-    letter-spacing: .04em; color: rgba(255,255,255,.55);
+  .pdfpage--close .pdf-body {
+    display: flex; align-items: center; justify-content: center; text-align: center;
   }
+  .pdf-close { max-width: 150mm; display: flex; flex-direction: column; align-items: center; }
+  .pdf-close__logo { height: 56px; width: auto; filter: brightness(0) invert(1); margin-bottom: 26px; }
+  .pdf-close .pdf-h2 { font-size: 30pt; margin-bottom: 14px; }
+  .pdf-close .pdf-lead { color: rgba(255,255,255,.82); margin: 0 auto; }
 }
