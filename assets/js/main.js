@@ -303,36 +303,20 @@
   const pdfBtn = document.querySelector('[data-download-pdf]');
   if (pdfBtn) {
     pdfBtn.addEventListener('click', () => {
-      // garante que todo conteúdo animado esteja visível antes de imprimir
-      document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-in'));
-      // preenche números/percentuais que ainda não animaram
-      document.querySelectorAll('[data-count]').forEach((el) => {
-        if (!el.textContent.trim() && typeof animateCount === 'function') animateCount(el);
-      });
-      document.querySelectorAll('.bar[data-pct]').forEach((b) => { b.style.width = b.dataset.pct + '%'; });
-      document.querySelectorAll('.pct[data-pct]').forEach((p) => { if (!p.textContent.trim()) p.textContent = p.dataset.pct + '%'; });
-
+      // monta o documento exclusivo de PDF (capa + páginas de relatório)
+      if (window.PreparaPDF) window.PreparaPDF.build();
       pdfBtn.classList.add('is-printing');
-      // pequeno atraso para o reflow aplicar antes da janela de impressão
+      // pequeno atraso para o reflow/decodificação das imagens antes de imprimir
       setTimeout(() => {
         window.print();
         pdfBtn.classList.remove('is-printing');
-      }, 120);
+      }, 200);
     });
-    // título do arquivo sugerido no diálogo "Salvar como PDF"
+    // garante o documento de PDF montado mesmo via Ctrl+P, e sugere o nome do arquivo
     window.addEventListener('beforeprint', () => {
+      if (window.PreparaPDF) window.PreparaPDF.build();
       pdfBtn.dataset.prevTitle = document.title;
       document.title = 'PreparaSP - Relatorio de pesquisa de campo';
-      // garante que números/barras estejam preenchidos mesmo via Ctrl+P
-      document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-in'));
-      document.querySelectorAll('[data-count]').forEach((el) => {
-        const t = parseFloat(el.dataset.count);
-        const dec = parseInt(el.dataset.decimals || '0', 10);
-        const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-        el.textContent = pre + t.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
-      });
-      document.querySelectorAll('.bar[data-pct]').forEach((b) => { b.style.width = b.dataset.pct + '%'; });
-      document.querySelectorAll('.pct[data-pct]').forEach((p) => { p.textContent = p.dataset.pct + '%'; });
     });
     window.addEventListener('afterprint', () => {
       if (pdfBtn.dataset.prevTitle) document.title = pdfBtn.dataset.prevTitle;
