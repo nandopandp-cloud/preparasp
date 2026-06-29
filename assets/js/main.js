@@ -66,17 +66,31 @@
     pcts.forEach((p) => bio.observe(p));
   }
 
-  /* ---------- reading progress bar ---------- */
+  /* ---------- reading progress bar + voltar ao topo ---------- */
   const pb = document.querySelector('.progressbar');
+  const toTop = document.querySelector('.to-top');
   function onScroll() {
     const h = document.documentElement;
     const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
     if (pb) pb.style.width = (scrolled * 100) + '%';
     const nav = document.querySelector('.nav');
     if (nav) nav.classList.toggle('is-stuck', window.scrollY > 40);
+    // mostra o botão "topo" depois de rolar ~60% da primeira tela
+    if (toTop) toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.6);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // garante a rolagem suave ao topo mesmo se o navegador ignorar :target
+  if (toTop) {
+    toTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      const behavior = prefersReduced ? 'auto' : 'smooth';
+      window.scrollTo({ top: 0, behavior });
+      // limpa o hash para não deixar #top na URL
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+    });
+  }
 
   /* ---------- parallax hero blobs ---------- */
   const blobs = document.querySelectorAll('.hero__blob');
