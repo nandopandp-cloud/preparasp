@@ -217,4 +217,198 @@
   renderRecs();
   // content.js runs before main.js, so the observers in main.js will pick up
   // these freshly injected [data-reveal] / [data-count] / .bar nodes.
+
+  /* =========================================================================
+     DOCUMENTO PDF — layout próprio, pensado para leitura impressa.
+     Construído sob demanda (antes de imprimir) a partir do mesmo DATA,
+     para não duplicar conteúdo e manter a identidade do PreparaSP.
+     ========================================================================= */
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const num = (n) => Number(n).toLocaleString('pt-BR');
+
+  // copy estática do relatório (espelha as seções da landing, em linguagem de PDF)
+  const PDF_STATIC = {
+    panorama: 'Fomos até as escolas para compreender as principais dores, frustrações, necessidades e expectativas dos estudantes que utilizam o PreparaSP e outras plataformas digitais como apoio na preparação para o vestibular e o ENEM. Este relatório reúne os principais insights coletados durante a pesquisa de campo.',
+    method: [
+      { n: '01', t: 'Visita às escolas', d: 'Cinco unidades da rede estadual, com turmas de 2º e 3º ano do Ensino Médio.' },
+      { n: '02', t: 'Conversas com os estudantes', d: 'Conversas abertas, em grupo, sobre a rotina de estudo e o uso da plataforma.' },
+      { n: '03', t: 'Documentação das conversas', d: 'Cada conversa foi documentada integralmente para análise, preservando a fala de cada estudante.' },
+      { n: '04', t: 'Análise temática', d: 'Organização e codificação dos trechos em insights, dores e oportunidades acionáveis.' },
+    ],
+    schools: [
+      { n: 'E.E. Professor Fidelino de Figueiredo', m: 'URE Centro' },
+      { n: 'E.E. Brasílio Machado', m: 'URE Centro-Sul' },
+      { n: 'E.E. João Ramalho', m: 'São Bernardo do Campo' },
+      { n: 'E.E. Santa Dalmolin', m: 'São Bernardo do Campo' },
+      { n: 'E.E. Professora Heloisa de Assumpção', m: 'Osasco' },
+    ],
+    educators: [
+      { ure: 'URE Guarulhos Norte', t: 'A leitura dos educadores reforça que a plataforma é mais potente quando conectada à rotina pedagógica da escola, e não usada de forma isolada pelo estudante.' },
+      { ure: 'URE Leste 3', t: 'A equipe destaca o valor do PreparaSP como apoio à preparação para o vestibular e o ENEM, e aponta a clareza de orientação ao estudante como ponto a fortalecer.' },
+      { ure: 'URE Santo André', t: 'Os educadores observam que o acompanhamento próximo da turma faz diferença direta no engajamento e na constância de uso da plataforma.' },
+    ],
+  };
+
+  function pdfPage(inner, opts) {
+    opts = opts || {};
+    const cls = 'pdfpage' + (opts.ink ? ' pdfpage--ink' : '') + (opts.cover ? ' pdfpage--cover' : '') + (opts.cls ? ' ' + opts.cls : '');
+    const foot = opts.cover ? '' :
+      `<div class="pdf-foot"><span>PreparaSP · Relatório de pesquisa de campo</span><span class="pdf-foot__pg"></span></div>`;
+    return `<section class="${cls}">${inner}${foot}</section>`;
+  }
+
+  function pdfKicker(label, tone) {
+    return `<div class="pdf-kicker${tone ? ' is-' + tone : ''}"><span class="pdf-kicker__dot"></span>${esc(label)}</div>`;
+  }
+
+  function buildPdfDoc() {
+    const host = document.getElementById('pdf-doc');
+    if (!host || host.dataset.built === '1') return;
+
+    const themesSorted = DATA.themes.slice().sort((a, b) => b.pct - a.pct);
+
+    /* ---- CAPA (full-bleed) ---- */
+    const cover = pdfPage(`
+      <div class="pdf-cover__photo">
+        <img src="assets/img/hero-estudantes-print.jpg" alt="" />
+        <span class="pdf-cover__veil"></span>
+      </div>
+      <div class="pdf-cover__top">
+        <img class="pdf-cover__logo" src="assets/img/logo-prepara.png" alt="PreparaSP" />
+        <span class="pdf-cover__edition">Junho de 2026</span>
+      </div>
+      <div class="pdf-cover__body">
+        <div class="pdf-cover__label">Relatório de pesquisa de campo</div>
+        <h1 class="pdf-cover__title">A voz de quem usa<br><span class="grad">o PreparaSP</span><br>todos os dias.</h1>
+        <p class="pdf-cover__sub">Uma imersão presencial com estudantes do 2º e 3º ano do Ensino Médio da rede estadual de São Paulo: o que funciona, o que trava e onde estão as maiores oportunidades.</p>
+        <div class="pdf-cover__stats">
+          <div><b>5</b><span>Escolas</span></div>
+          <div><b>${num(300)}</b><span>Estudantes</span></div>
+          <div><b>2</b><span>Séries (2º e 3º)</span></div>
+          <div><b>3</b><span>UREs com educadores</span></div>
+        </div>
+      </div>`, { cover: true });
+
+    /* ---- SUMÁRIO / PANORAMA + METODOLOGIA ---- */
+    const intro = pdfPage(`
+      ${pdfKicker('Panorama da pesquisa')}
+      <h2 class="pdf-h2">O que aprendemos ouvindo a sala de aula.</h2>
+      <p class="pdf-lead">${esc(PDF_STATIC.panorama)}</p>
+
+      <div class="pdf-bignums">
+        <div class="pdf-bignum"><b>${num(300)}</b><span>Estudantes na amostra</span><small>2º e 3º ano, ouvidos presencialmente.</small></div>
+        <div class="pdf-bignum pdf-bignum--b"><b>5</b><span>Escolas visitadas</span><small>Perfis e níveis de adoção distintos.</small></div>
+        <div class="pdf-bignum pdf-bignum--c"><b>2</b><span>Séries em foco</span><small>Conversas documentadas trecho a trecho.</small></div>
+      </div>
+
+      <div class="pdf-method">
+        <div class="pdf-method__steps">
+          <h3 class="pdf-h3">Metodologia</h3>
+          ${PDF_STATIC.method.map((s) => `
+            <div class="pdf-step"><span class="pdf-step__n">${s.n}</span><div><b>${esc(s.t)}</b><p>${esc(s.d)}</p></div></div>`).join('')}
+        </div>
+        <aside class="pdf-schools">
+          <h4>Onde a pesquisa passou</h4>
+          ${PDF_STATIC.schools.map((e) => `
+            <div class="pdf-school"><span class="pdf-school__ic"></span><div><b>${esc(e.n)}</b><span>${esc(e.m)}</span></div></div>`).join('')}
+        </aside>
+      </div>`);
+
+    /* ---- EDUCADORES + TEMAS ---- */
+    const edu = pdfPage(`
+      ${pdfKicker('Quem está na escola todo dia', 'light')}
+      <h2 class="pdf-h2">A visão de quem conduz a sala de aula.</h2>
+      <p class="pdf-lead pdf-lead--ink">Além dos estudantes, ouvimos professores, coordenadores e diretores. São eles que acompanham o uso do PreparaSP no dia a dia e enxergam o que sustenta o engajamento.</p>
+      <div class="pdf-edu">
+        ${PDF_STATIC.educators.map((e) => `
+          <div class="pdf-edu__card">
+            <h4>${esc(e.ure)}</h4>
+            <span class="pdf-edu__role">Professores · coordenadores · diretores</span>
+            <p>${esc(e.t)}</p>
+          </div>`).join('')}
+      </div>`, { ink: true });
+
+    const themes = pdfPage(`
+      ${pdfKicker('Os grandes temas')}
+      <h2 class="pdf-h2">O que mais apareceu nas conversas.</h2>
+      <p class="pdf-lead">As barras indicam a <b>recorrência</b> com que cada tema surgiu nas conversas com os estudantes. É uma leitura qualitativa de quanto o assunto se repetiu.</p>
+      <div class="pdf-themes">
+        ${themesSorted.map((t) => `
+          <div class="pdf-theme">
+            <div class="pdf-theme__head"><b>${esc(t.title)}</b><span class="pdf-theme__pct">${t.pct}%</span></div>
+            <div class="pdf-theme__track"><span class="pdf-theme__fill${t.tone ? ' ' + t.tone : ''}" style="width:${t.pct}%"></span></div>
+            <p>${esc(t.desc)}</p>
+          </div>`).join('')}
+      </div>`);
+
+    /* ---- DORES ---- */
+    const pains = pdfPage(`
+      ${pdfKicker('Dores e fricções', 'warm')}
+      <h2 class="pdf-h2">Onde a experiência ainda trava.</h2>
+      <p class="pdf-lead">Os obstáculos que mais apareceram quando os estudantes falaram sobre usar, ou desistir de usar, o PreparaSP.</p>
+      <div class="pdf-cards">
+        ${DATA.pains.map((c) => `
+          <div class="pdf-card pdf-card--warm">
+            <span class="pdf-card__tag">${esc(c.tag)}</span>
+            <b>${esc(c.title)}</b>
+            <p>${esc(c.text)}</p>
+          </div>`).join('')}
+      </div>`);
+
+    /* ---- OPORTUNIDADES ---- */
+    const opps = pdfPage(`
+      ${pdfKicker('Oportunidades', 'mint')}
+      <h2 class="pdf-h2">O que pode transformar a plataforma.</h2>
+      <p class="pdf-lead">As oportunidades mais claras para tornar o PreparaSP mais útil, mais usado e mais querido pelos estudantes.</p>
+      <div class="pdf-cards">
+        ${DATA.opps.map((c) => `
+          <div class="pdf-card pdf-card--mint">
+            <span class="pdf-card__tag">${esc(c.tag)}</span>
+            <b>${esc(c.title)}</b>
+            <p>${esc(c.text)}</p>
+          </div>`).join('')}
+      </div>`);
+
+    /* ---- VOZES (navy) ---- */
+    const voices = pdfPage(`
+      ${pdfKicker('Nas próprias palavras', 'light')}
+      <h2 class="pdf-h2">As vozes dos estudantes.</h2>
+      <p class="pdf-lead pdf-lead--ink">Trechos reais das conversas, editados apenas para clareza, preservando o sentido da fala.</p>
+      <div class="pdf-quotes">
+        ${DATA.quotes.map((q) => `
+          <figure class="pdf-quote">
+            <blockquote>${esc(q.text)}</blockquote>
+            <figcaption><b>${esc(q.who)}</b><span>${esc(q.meta)}</span></figcaption>
+          </figure>`).join('')}
+      </div>`, { ink: true });
+
+    /* ---- RECOMENDAÇÕES (navy) ---- */
+    const highs = DATA.recs.filter((r) => r.prio === 'high');
+    const mids = DATA.recs.filter((r) => r.prio !== 'high');
+    const recRow = (r) => `
+      <div class="pdf-rec pdf-rec--${r.prio === 'high' ? 'high' : 'mid'}">
+        <span class="pdf-rec__n">${esc(r.pr)}</span>
+        <div><b>${esc(r.title)}</b><p>${esc(r.text)}</p></div>
+      </div>`;
+    const recs = pdfPage(`
+      ${pdfKicker('Caminho a seguir', 'light')}
+      <h2 class="pdf-h2">Recomendações prioritárias.</h2>
+      <p class="pdf-lead pdf-lead--ink">Movimentos concretos, ordenados por prioridade, para evoluir o PreparaSP a partir do que ouvimos em campo.</p>
+      <div class="pdf-recgroup"><span class="pdf-recgroup__label">Prioridade alta</span>${highs.map(recRow).join('')}</div>
+      <div class="pdf-recgroup"><span class="pdf-recgroup__label">Próximos passos</span>${mids.map(recRow).join('')}</div>`, { ink: true });
+
+    /* ---- ENCERRAMENTO ---- */
+    const closing = pdfPage(`
+      <div class="pdf-close">
+        <img class="pdf-close__logo" src="assets/img/logo-prepara.png" alt="PreparaSP" />
+        <h2 class="pdf-h2">Da escuta à ação.</h2>
+        <p class="pdf-lead">Este relatório nasce da voz dos estudantes. O próximo passo é transformar cada insight em melhorias reais na experiência do PreparaSP.</p>
+        <p class="pdf-close__meta">Pesquisa de campo com estudantes da 2ª e 3ª série do Ensino Médio · Rede Estadual de São Paulo · Junho de 2026.</p>
+      </div>`, { ink: true, cls: 'pdfpage--close' });
+
+    host.innerHTML = cover + intro + edu + themes + pains + opps + voices + recs + closing;
+    host.dataset.built = '1';
+  }
+
+  window.PreparaPDF = { build: buildPdfDoc };
 })();
