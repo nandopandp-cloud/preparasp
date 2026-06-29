@@ -122,12 +122,12 @@
       { text: 'Quando a gente sai sem querer do computador, não salva, e você perde tudo da redação. Se salvasse sozinho, ajudaria muito.', who: 'Estudante · 3º ano', meta: 'Sobre a Redação Paulista', hl: true },
       { text: 'Eu me sinto confuso porque tem muita coisa. Eu tenho TDAH, eu não sei onde vou estudar.', who: 'Estudante · 3º ano', meta: 'Sobre o cronograma', hl: false },
       { text: 'Achei tudo muito misturado, difícil de identificar. Eu deixaria o mais simples possível.', who: 'Estudante · 3º ano', meta: 'Sobre a interface', hl: false },
-      { text: 'A plataforma é muito branca. As redes que a gente usa são muito mais coloridas, mais alegres.', who: 'Estudante · 3º ano', meta: 'Sobre identidade visual', hl: false },
+      // { text: 'A plataforma é muito branca. As redes que a gente usa são muito mais coloridas, mais alegres.', who: 'Estudante · 3º ano', meta: 'Sobre identidade visual', hl: false },
       { text: 'Quando clica em “ver histórico”, não aparece nada. Nem abre.', who: 'Estudante · 2º ano', meta: 'Sobre confiabilidade', hl: false },
-      { text: 'O computador não dá pra baixar, e não tem como usar no sábado.', who: 'Estudante · 2º ano', meta: 'Sobre acesso e dispositivos', hl: false },
+      // { text: 'O computador não dá pra baixar, e não tem como usar no sábado.', who: 'Estudante · 2º ano', meta: 'Sobre acesso e dispositivos', hl: false },
       { text: 'Eu preciso ser compensado pra querer estudar. Estudar, pra mim, não é algo interessante por si só.', who: 'Estudante · 3º ano', meta: 'Sobre motivação', hl: true },
       { text: 'A gente tem muito aluno imigrante, da Venezuela, de países de língua francesa, e a plataforma só tem português.', who: 'Educador(a) · em campo', meta: 'Sobre inclusão e equidade', hl: false },
-      { text: 'A galera já tem 47 dias de ofensiva.', who: 'Conversa com estudantes', meta: 'Sobre engajamento e hábito', hl: true },
+      // { text: 'A galera já tem 47 dias de ofensiva.', who: 'Conversa com estudantes', meta: 'Sobre engajamento e hábito', hl: true },
     ],
 
     /* ---- recomendações ---- */
