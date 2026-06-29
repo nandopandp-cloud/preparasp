@@ -186,7 +186,7 @@
     DATA.quotes.forEach((q, i) => {
       const initials = (q.who || '•').replace(/[·].*/, '').trim().split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase() || '•';
       const node = el(`
-        <figure class="qcard ${q.hl ? 'qcard--hl' : ''}" data-reveal data-reveal-delay="${(i % 2) + 1}">
+        <figure class="qcard" data-reveal data-reveal-delay="${(i % 2) + 1}" tabindex="0">
           <div class="mark">&ldquo;</div>
           <blockquote>${q.text}</blockquote>
           <figcaption class="who">
