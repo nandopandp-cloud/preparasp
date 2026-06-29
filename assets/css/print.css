@@ -153,7 +153,10 @@
   .pdf-cover__title {
     font-family: 'Sora','Geist',sans-serif; font-weight: 800;
     font-size: 40pt; line-height: 1.02; letter-spacing: -.025em; margin: 0 0 14px;
+    color: #ffffff;
   }
+  /* só "PreparaSP" fica laranja; o restante do título permanece branco */
+  .pdf-cover__title .grad { color: var(--p-orange) !important; -webkit-text-fill-color: var(--p-orange) !important; }
   .pdf-cover__sub { font-size: 11.5pt; color: rgba(255,255,255,.82); max-width: 150mm; margin: 0 0 22px; }
   .pdf-cover__stats {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
