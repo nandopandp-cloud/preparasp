@@ -127,9 +127,9 @@
   }
   .pdf-cover__body {
     position: relative; z-index: 2; margin-top: auto;
-    padding: 26mm 18mm 18mm;
+    padding: 34mm 18mm 18mm;
     /* painel escuro garante contraste do título sobre qualquer parte da foto */
-    background: linear-gradient(to top, rgba(7,11,30,.98) 0%, rgba(7,11,30,.96) 55%, rgba(7,11,30,.7) 82%, transparent 100%);
+    background: linear-gradient(to top, rgba(7,11,30,.99) 0%, rgba(7,11,30,.98) 68%, rgba(7,11,30,.86) 88%, transparent 100%);
   }
   .pdf-cover__label {
     font-family: 'Geist Mono', monospace; font-size: 9.5pt; font-weight: 600;
