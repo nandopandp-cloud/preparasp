@@ -133,15 +133,15 @@
     /* ---- recomendações ---- */
     recs: [
       { pr: '01', prio: 'high', title: 'Redação à prova de falhas', text: 'Salvamento automático contínuo, recuperação de rascunho, resiliência à queda de conexão e envio por foto/celular. Maior ganho de confiança com o menor esforço.' },
-      { pr: '02', prio: 'high', title: 'Levar o PreparaSP para o celular e para casa', text: 'Experiência mobile fluida para estudar em casa e no fim de semana, contexto em que os estudantes dizem que o uso “seria bem maior”.' },
+      { pr: '02', prio: 'high', title: 'Reforçar a comunicação sobre o uso do PreparaSP fora da escola', text: 'A pesquisa indica uma oportunidade de comunicar com maior destaque que a plataforma também pode ser acessada pelo celular fora do ambiente escolar, ampliando a percepção de disponibilidade e incentivando o uso em casa e nos finais de semana.”.' },
       { pr: '03', prio: 'high', title: '“Comece por aqui”: onboarding guiado', text: 'Um primeiro passo claro e trilhas por objetivo, com suporte a necessidades específicas (acessibilidade, TDAH), para vencer a paralisia do excesso.' },
       { pr: '04', prio: 'high', title: 'Interface mais simples e mais viva', text: 'Reduzir densidade, priorizar a visão do dia, separar tarefa do professor da recomendação do algoritmo e dar mais cor e energia à identidade visual.' },
-      { pr: '05', prio: 'mid', title: 'Reconquistar a confiança', text: 'Corrigir bugs visíveis (ver histórico, botão coberto no tablet, questões de matemática ilegível).' },
-      { pr: '06', prio: 'mid', title: 'Gamificação de ponta a ponta', text: 'Conectar ofensiva, Liga, avatares, pontos e recompensas da escola, com o progresso sempre visível e disputas entre os estudantes.' },
-      { pr: '07', prio: 'mid', title: 'Cronograma editável, com lembretes', text: 'Permitir reordenar, marcar concluído e receber lembrete no celular, devolvendo autonomia ao estudante.' },
-      { pr: '08', prio: 'mid', title: 'Assistente de estudos com IA', text: 'Tornar a IA da plataforma contextual e visível, tirando dúvidas e levando o estudante direto ao conteúdo certo.' },
-      { pr: '09', prio: 'mid', title: 'Biblioteca viva + acessibilidade visível', text: 'Dar destaque a recursos que já existem e ampliar formatos: resumos, flashcards, mapas mentais e vídeos ilustrados.' },
-      { pr: '10', prio: 'mid', title: 'Inclusão, equidade e futuro', text: 'Suporte a múltiplos idiomas para estudantes imigrantes e um teste vocacional que conecte o estudo a um propósito.' },
+      // { pr: '05', prio: 'mid', title: 'Reconquistar a confiança', text: 'Corrigir bugs visíveis (ver histórico, botão coberto no tablet, questões de matemática ilegível).' },
+      { pr: '05', prio: 'mid', title: 'Gamificação de ponta a ponta', text: 'Conectar ofensiva, Liga, avatares, pontos e recompensas da escola, com o progresso sempre visível e disputas entre os estudantes.' },
+      { pr: '06', prio: 'mid', title: 'Cronograma editável, com lembretes', text: 'Permitir reordenar, marcar concluído e receber lembrete no celular, devolvendo autonomia ao estudante.' },
+      // { pr: '08', prio: 'mid', title: 'Assistente de estudos com IA', text: 'Tornar a IA da plataforma contextual e visível, tirando dúvidas e levando o estudante direto ao conteúdo certo.' },
+      { pr: '07', prio: 'mid', title: 'Biblioteca viva + acessibilidade visível', text: 'Dar destaque a recursos que já existem e ampliar formatos: resumos, flashcards, mapas mentais e vídeos ilustrados.' },
+      { pr: '08', prio: 'mid', title: 'Inclusão, equidade e futuro', text: 'Suporte a múltiplos idiomas para estudantes imigrantes e um teste vocacional que conecte o estudo a um propósito.' },
     ],
   };
 
