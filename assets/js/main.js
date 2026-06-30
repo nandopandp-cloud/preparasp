@@ -332,8 +332,22 @@
       pdfBtn.dataset.prevTitle = document.title;
       document.title = 'PreparaSP - Relatorio de pesquisa de campo';
     });
+    // afterprint dispara tanto ao concluir quanto ao CANCELAR a janela de salvar.
+    // Desmontamos o documento de PDF (DOM pesado) e forçamos um reflow para que
+    // a landing volte ao layout normal — sem isso o Chrome às vezes deixa o
+    // conteúdo "deslocado para o footer" depois de fechar o diálogo de impressão.
     window.addEventListener('afterprint', () => {
       if (pdfBtn.dataset.prevTitle) document.title = pdfBtn.dataset.prevTitle;
+      pdfBtn.classList.remove('is-printing');
+      if (window.PreparaPDF) window.PreparaPDF.teardown();
+      // força o navegador a recalcular o layout da página visível, sem piscar a
+      // tela: alterna a classe de impressão no <html> e lê offsetHeight (reflow).
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add('is-reflow');
+        void document.body.offsetHeight;
+        document.documentElement.classList.remove('is-reflow');
+        void document.body.offsetHeight;
+      });
     });
   }
 

@@ -603,3 +603,7 @@ footer small { font-size:.82rem; color:#7e88b8; font-family: var(--font-mono); l
   .to-top { right: 16px; bottom: 18px; }
 }
 @media print { .to-top { display: none !important; } }
+
+/* nudge usado apenas para forçar reflow após fechar o diálogo de impressão
+   (corrige conteúdo "deslocado para o footer" no Chrome ao cancelar o PDF) */
+html.is-reflow body { transform: translateZ(0); }

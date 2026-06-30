@@ -430,5 +430,14 @@
     host.dataset.built = '1';
   }
 
-  window.PreparaPDF = { build: buildPdfDoc };
+  // remove o documento de PDF do DOM após imprimir/cancelar, devolvendo a
+  // página a um estado leve e evitando bugs de reflow do navegador.
+  function teardownPdfDoc() {
+    const host = document.getElementById('pdf-doc');
+    if (!host) return;
+    host.innerHTML = '';
+    delete host.dataset.built;
+  }
+
+  window.PreparaPDF = { build: buildPdfDoc, teardown: teardownPdfDoc };
 })();
